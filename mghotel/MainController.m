@@ -15,6 +15,8 @@
 @property (strong, nonatomic) IBOutlet NSLayoutConstraint *worldImageHeight;
 @property (strong, nonatomic) IBOutlet NSLayoutConstraint *worldImageWidth;
 
+@property (assign, nonatomic) NSInteger currentPage;
+
 @end
 
 @implementation MainController
@@ -22,6 +24,8 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    self.currentPage = 0;
 }
 
 - (void)didReceiveMemoryWarning
@@ -38,6 +42,7 @@
     {
         self.worldImageWidth.constant = kScreenWidth * 3;
         self.worldImageHeight.constant = self.scrollBackground.frame.size.height;
+        self.scrollBackground.contentOffset = CGPointMake(kScreenWidth * self.currentPage, 0);
         [self.navigationController setNavigationBarHidden:NO animated:YES];
         [self.navigationController setToolbarHidden:NO animated:YES];
     }
@@ -50,6 +55,15 @@
     }
 }
 
+#pragma mark - Fucntions
+
+- (void)setCurrentPage:(NSInteger)currentPage
+{
+    _currentPage = currentPage;
+    [self switchToButton:currentPage];
+    [self scrollToPage:currentPage];
+}
+
 - (UIInterfaceOrientationMask)supportedInterfaceOrientations
 {
     return UIInterfaceOrientationMaskAll;
@@ -58,9 +72,7 @@
 - (IBAction)functionPress:(id)sender
 {
     UIBarButtonItem* functionButton = (UIBarButtonItem *)sender;
-    NSInteger index = functionButton.tag;
-    [self switchToButton:index];
-    [self scrollToPage:index];
+    self.currentPage = functionButton.tag;
 }
 
 - (void)scrollToPage:(NSInteger)index
@@ -71,9 +83,20 @@
 
 - (void)switchToButton:(NSInteger)index
 {
-    [self.funcReservation setTintColor:[UIColor grayColor]];
-    [self.funcNavigation setTintColor:[UIColor grayColor]];
-    [self.funcCall setTintColor:[UIColor grayColor]];
+//    [self.funcReservation setTitleTextAttributes:@{NSForegroundColorAttributeName : [UIColor blueColor]}
+//                                        forState:UIControlStateSelected];
+//    [self.funcReservation setTitleTextAttributes:@{NSForegroundColorAttributeName : [UIColor blueColor]}
+//                                        forState:UIControlStateDisabled];
+//    [self.funcReservation setTitleTextAttributes:@{NSForegroundColorAttributeName : [UIColor blueColor]}
+//                                        forState:UIControlStateFocused];
+//    [self.funcReservation setTitleTextAttributes:@{NSForegroundColorAttributeName : [UIColor redColor]}
+//                                        forState:UIControlStateNormal];
+//    [self.funcReservation setTitleTextAttributes:@{NSForegroundColorAttributeName : [UIColor redColor]}
+//                                        forState:UIControlStateFocused];
+
+    [self.funcReservation setTintColor:[UIColor lightGrayColor]];
+    [self.funcNavigation setTintColor:[UIColor lightGrayColor]];
+    [self.funcCall setTintColor:[UIColor lightGrayColor]];
     
     switch (index)
     {
@@ -93,18 +116,19 @@
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView
 {
-    NSInteger page = (int)(scrollView.contentOffset.x / kScreenWidth);
-    [self switchToButton:page];
+    if (UIDeviceOrientationIsPortrait([[UIDevice currentDevice] orientation]))
+    {
+        NSInteger page = (int)(scrollView.contentOffset.x / kScreenWidth);
+        [self switchToButton:page];
+    }
 }
 
-/*
 #pragma mark - Navigation
 
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
     // Get the new view controller using [segue destinationViewController].
     // Pass the selected object to the new view controller.
 }
-*/
 
 @end

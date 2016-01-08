@@ -107,26 +107,31 @@
                         </constraints>
                     </view>
                     <toolbarItems>
-                        <barButtonItem title="酒店预订" id="oG8-vV-REZ">
+                        <barButtonItem enabled="NO" title="酒店预订" style="plain" id="oG8-vV-REZ">
+                            <color key="tintColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                             <connections>
                                 <action selector="functionPress:" destination="F5X-Vq-jW3" id="ecH-Es-7MC"/>
                             </connections>
                         </barButtonItem>
                         <barButtonItem style="plain" systemItem="flexibleSpace" id="CNG-0U-QX1"/>
-                        <barButtonItem tag="1" title="游览导航" id="dru-o2-9EF">
+                        <barButtonItem tag="1" enabled="NO" title="游览导航" style="plain" id="dru-o2-9EF">
+                            <color key="tintColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                             <connections>
                                 <action selector="functionPress:" destination="F5X-Vq-jW3" id="njj-Zj-FNs"/>
                             </connections>
                         </barButtonItem>
                         <barButtonItem style="plain" systemItem="flexibleSpace" id="YxB-ml-vAA"/>
-                        <barButtonItem tag="2" title="服务呼叫" id="xwR-D4-7A3">
+                        <barButtonItem tag="2" enabled="NO" title="服务呼叫" style="plain" id="xwR-D4-7A3">
+                            <color key="tintColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                             <connections>
                                 <action selector="functionPress:" destination="F5X-Vq-jW3" id="E95-LZ-LYE"/>
                             </connections>
                         </barButtonItem>
                     </toolbarItems>
                     <navigationItem key="navigationItem" title="红树林管家" id="mqg-Vb-vxD">
-                        <barButtonItem key="leftBarButtonItem" systemItem="reply" id="LIC-dB-gWZ"/>
+                        <barButtonItem key="leftBarButtonItem" systemItem="reply" id="LIC-dB-gWZ">
+                            <color key="tintColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="funcCall" destination="xwR-D4-7A3" id="6rD-RA-fFJ"/>
@@ -141,24 +146,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="eRM-R0-DPr" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="4978" y="2047"/>
-        </scene>
-        <!--View Controller-->
-        <scene sceneID="VvH-wl-sEg">
-            <objects>
-                <viewController id="LS0-SL-UNE" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="s52-cv-AaD"/>
-                        <viewControllerLayoutGuide type="bottom" id="8B7-Ob-lGF"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="csV-HI-kEf">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    </view>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="SCn-o8-AMp" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="6278" y="2757"/>
         </scene>
         <!--MAIN_NAVI-->
         <scene sceneID="fvn-Zr-usY">
@@ -200,10 +187,10 @@
                                 <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="settingCell" id="ce4-rP-ksj">
-                                        <rect key="frame" x="0.0" y="93.5" width="600" height="44"/>
+                                        <rect key="frame" x="0.0" y="94" width="600" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="ce4-rP-ksj" id="iRV-Lh-yzF">
-                                            <rect key="frame" x="0.0" y="0.0" width="600" height="43.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="06h-2Y-VTq">
@@ -286,10 +273,10 @@
                                 <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="filterCell" id="lNu-7O-5jR">
-                                        <rect key="frame" x="0.0" y="93.5" width="600" height="44"/>
+                                        <rect key="frame" x="0.0" y="94" width="600" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="lNu-7O-5jR" id="TmM-2y-YYM">
-                                            <rect key="frame" x="0.0" y="0.0" width="600" height="43.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="a18-Ki-NY6">
