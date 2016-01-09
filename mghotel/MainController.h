@@ -10,8 +10,8 @@
 
 @interface MainController : UIViewController
 
-@property (strong, nonatomic) IBOutlet UIBarButtonItem *funcReservation;
-@property (strong, nonatomic) IBOutlet UIBarButtonItem *funcNavigation;
-@property (strong, nonatomic) IBOutlet UIBarButtonItem *funcCall;
+@property (strong, nonatomic) IBOutlet UILabel *funcReservation;
+@property (strong, nonatomic) IBOutlet UILabel *funcNavigation;
+@property (strong, nonatomic) IBOutlet UILabel *funcService;
 
 @end

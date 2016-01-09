@@ -108,19 +108,17 @@
 		D057891C1C3CE16F0051E1A0 /* mghotel */ = {
 			isa = PBXGroup;
 			children = (
+				D05789291C3CE16F0051E1A0 /* Main.storyboard */,
 				D05789201C3CE16F0051E1A0 /* AppDelegate.h */,
 				D05789211C3CE16F0051E1A0 /* AppDelegate.m */,
-				D05789291C3CE16F0051E1A0 /* Main.storyboard */,
-				D057892C1C3CE16F0051E1A0 /* Assets.xcassets */,
-				D057892E1C3CE16F0051E1A0 /* LaunchScreen.storyboard */,
-				D05789311C3CE16F0051E1A0 /* Info.plist */,
-				D057891D1C3CE16F0051E1A0 /* Supporting Files */,
+				D06705A21C3F90A90075CBE8 /* FrameController.h */,
+				D06705A31C3F90A90075CBE8 /* FrameController.m */,
 				D067059B1C3F803D0075CBE8 /* SettingsController.h */,
 				D067059C1C3F803D0075CBE8 /* SettingsController.m */,
 				D067059E1C3F87810075CBE8 /* MainController.h */,
 				D067059F1C3F87810075CBE8 /* MainController.m */,
-				D06705A21C3F90A90075CBE8 /* FrameController.h */,
-				D06705A31C3F90A90075CBE8 /* FrameController.m */,
+				D057892C1C3CE16F0051E1A0 /* Assets.xcassets */,
+				D057891D1C3CE16F0051E1A0 /* Supporting Files */,
 			);
 			path = mghotel;
 			sourceTree = "<group>";
@@ -128,6 +126,8 @@
 		D057891D1C3CE16F0051E1A0 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				D057892E1C3CE16F0051E1A0 /* LaunchScreen.storyboard */,
+				D05789311C3CE16F0051E1A0 /* Info.plist */,
 				D057891E1C3CE16F0051E1A0 /* main.m */,
 				D06705A11C3F885A0075CBE8 /* Commons.h */,
 			);
