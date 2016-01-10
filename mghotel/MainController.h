@@ -19,4 +19,6 @@
 @property (retain, nonatomic) FuncReservationView *funcNavigationView;
 @property (retain, nonatomic) FuncReservationView *funcServicenView;
 
+@property (assign, nonatomic) BOOL showFunctionLayer;
+
 @end

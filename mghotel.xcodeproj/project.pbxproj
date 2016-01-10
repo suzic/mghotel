@@ -113,8 +113,8 @@
 		D057891C1C3CE16F0051E1A0 /* mghotel */ = {
 			isa = PBXGroup;
 			children = (
+				D08934A11C4228B800BF5748 /* FrontLayer */,
 				D05789291C3CE16F0051E1A0 /* Main.storyboard */,
-				D089349B1C4203DF00BF5748 /* FunctionViews.xib */,
 				D05789201C3CE16F0051E1A0 /* AppDelegate.h */,
 				D05789211C3CE16F0051E1A0 /* AppDelegate.m */,
 				D06705A21C3F90A90075CBE8 /* FrameController.h */,
@@ -125,8 +125,6 @@
 				D067059F1C3F87810075CBE8 /* MainController.m */,
 				D057892C1C3CE16F0051E1A0 /* Assets.xcassets */,
 				D057891D1C3CE16F0051E1A0 /* Supporting Files */,
-				D089349E1C42048A00BF5748 /* FuncReservationView.h */,
-				D089349F1C42048A00BF5748 /* FuncReservationView.m */,
 			);
 			path = mghotel;
 			sourceTree = "<group>";
@@ -158,6 +156,16 @@
 				D05789471C3CE16F0051E1A0 /* Info.plist */,
 			);
 			path = mghotelUITests;
+			sourceTree = "<group>";
+		};
+		D08934A11C4228B800BF5748 /* FrontLayer */ = {
+			isa = PBXGroup;
+			children = (
+				D089349B1C4203DF00BF5748 /* FunctionViews.xib */,
+				D089349E1C42048A00BF5748 /* FuncReservationView.h */,
+				D089349F1C42048A00BF5748 /* FuncReservationView.m */,
+			);
+			name = FrontLayer;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

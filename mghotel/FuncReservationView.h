@@ -10,6 +10,11 @@
 
 @interface FuncReservationView : UIView
 
+@property (strong, nonatomic) IBOutlet UIView *ARTRow;
+@property (strong, nonatomic) IBOutlet UIView *CRSRow;
+@property (strong, nonatomic) IBOutlet UIView *CenterView;
+@property (strong, nonatomic) IBOutlet UIButton *searchButton;
+
 + (FuncReservationView *)setupReservationView;
 
 @end

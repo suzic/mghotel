@@ -8,54 +8,139 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="FuncReservationView">
+        <view clipsSubviews="YES" contentMode="scaleToFill" id="iN0-l3-epB" customClass="FuncReservationView">
             <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qqg-Mk-Usd">
-                    <rect key="frame" x="0.0" y="50" width="400" height="50"/>
+                    <rect key="frame" x="-8" y="20" width="400" height="50"/>
                     <subviews>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" reversesTitleShadowWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Bed-LN-P2V">
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" reversesTitleShadowWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Bed-LN-P2V">
                             <rect key="frame" x="0.0" y="0.0" width="400" height="50"/>
-                            <state key="normal" title="精准预订"/>
+                            <inset key="contentEdgeInsets" minX="40" minY="0.0" maxX="0.0" maxY="0.0"/>
+                            <state key="normal" title="精准预订">
+                                <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </state>
                         </button>
                     </subviews>
-                    <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
+                    <color key="backgroundColor" white="0.33333333333333331" alpha="0.66577808277027029" colorSpace="calibratedWhite"/>
                     <constraints>
-                        <constraint firstItem="Bed-LN-P2V" firstAttribute="centerX" secondItem="qqg-Mk-Usd" secondAttribute="centerX" id="3OR-Je-Ct9"/>
-                        <constraint firstItem="Bed-LN-P2V" firstAttribute="centerY" secondItem="qqg-Mk-Usd" secondAttribute="centerY" id="Rkg-7r-dUP"/>
-                        <constraint firstAttribute="height" constant="50" id="a8I-nK-yv2"/>
-                        <constraint firstItem="Bed-LN-P2V" firstAttribute="height" secondItem="qqg-Mk-Usd" secondAttribute="height" id="epx-Ur-Zew"/>
-                        <constraint firstItem="Bed-LN-P2V" firstAttribute="width" secondItem="qqg-Mk-Usd" secondAttribute="width" id="tKZ-Fz-nVa"/>
+                        <constraint firstItem="Bed-LN-P2V" firstAttribute="height" secondItem="qqg-Mk-Usd" secondAttribute="height" id="Hod-6x-6e3"/>
+                        <constraint firstItem="Bed-LN-P2V" firstAttribute="width" secondItem="qqg-Mk-Usd" secondAttribute="width" id="NwO-cL-rl9"/>
+                        <constraint firstItem="Bed-LN-P2V" firstAttribute="centerX" secondItem="qqg-Mk-Usd" secondAttribute="centerX" id="Tdd-qu-DsW"/>
+                        <constraint firstItem="Bed-LN-P2V" firstAttribute="centerY" secondItem="qqg-Mk-Usd" secondAttribute="centerY" id="UW7-7K-Uj5"/>
+                        <constraint firstAttribute="height" constant="50" id="or9-XF-R1R"/>
                     </constraints>
                 </view>
                 <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9bG-un-DaQ">
-                    <rect key="frame" x="0.0" y="120" width="300" height="50"/>
+                    <rect key="frame" x="-8" y="90" width="300" height="50"/>
                     <subviews>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" reversesTitleShadowWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xFH-Pq-QKt">
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" reversesTitleShadowWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xFH-Pq-QKt">
                             <rect key="frame" x="0.0" y="0.0" width="300" height="50"/>
-                            <state key="normal" title="精准预订"/>
+                            <inset key="contentEdgeInsets" minX="40" minY="0.0" maxX="0.0" maxY="0.0"/>
+                            <state key="normal" title="传统预订">
+                                <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                            </state>
                         </button>
                     </subviews>
-                    <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
+                    <color key="backgroundColor" white="0.66666666666666663" alpha="0.67000000000000004" colorSpace="calibratedWhite"/>
                     <constraints>
-                        <constraint firstItem="xFH-Pq-QKt" firstAttribute="width" secondItem="9bG-un-DaQ" secondAttribute="width" id="CWc-6m-rCi"/>
-                        <constraint firstAttribute="height" constant="50" id="Dgb-SY-mM5"/>
-                        <constraint firstItem="xFH-Pq-QKt" firstAttribute="centerX" secondItem="9bG-un-DaQ" secondAttribute="centerX" id="Guh-SO-buE"/>
-                        <constraint firstItem="xFH-Pq-QKt" firstAttribute="centerY" secondItem="9bG-un-DaQ" secondAttribute="centerY" id="My6-ed-jrd"/>
-                        <constraint firstItem="xFH-Pq-QKt" firstAttribute="height" secondItem="9bG-un-DaQ" secondAttribute="height" id="eVN-JU-fzy"/>
+                        <constraint firstItem="xFH-Pq-QKt" firstAttribute="width" secondItem="9bG-un-DaQ" secondAttribute="width" id="6rX-od-NXo"/>
+                        <constraint firstItem="xFH-Pq-QKt" firstAttribute="centerX" secondItem="9bG-un-DaQ" secondAttribute="centerX" id="Bvh-nJ-19I"/>
+                        <constraint firstAttribute="height" constant="50" id="c6U-1R-tWu"/>
+                        <constraint firstItem="xFH-Pq-QKt" firstAttribute="centerY" secondItem="9bG-un-DaQ" secondAttribute="centerY" id="fai-s9-WJO"/>
+                        <constraint firstItem="xFH-Pq-QKt" firstAttribute="height" secondItem="9bG-un-DaQ" secondAttribute="height" id="zik-eU-6cA"/>
+                    </constraints>
+                </view>
+                <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="f25-pD-KXQ">
+                    <rect key="frame" x="128" y="420" width="480" height="50"/>
+                    <subviews>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" reversesTitleShadowWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Y9e-cN-dYY">
+                            <rect key="frame" x="0.0" y="0.0" width="480" height="50"/>
+                            <state key="normal" title="酒店订单中心">
+                                <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                            </state>
+                        </button>
+                    </subviews>
+                    <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="0.80000000000000004" colorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstItem="Y9e-cN-dYY" firstAttribute="width" secondItem="f25-pD-KXQ" secondAttribute="width" id="6ut-14-rgS"/>
+                        <constraint firstItem="Y9e-cN-dYY" firstAttribute="centerY" secondItem="f25-pD-KXQ" secondAttribute="centerY" id="ad2-or-2nq"/>
+                        <constraint firstAttribute="height" constant="50" id="ncL-0d-2b4"/>
+                        <constraint firstItem="Y9e-cN-dYY" firstAttribute="centerX" secondItem="f25-pD-KXQ" secondAttribute="centerX" id="sEX-Jf-vJz"/>
+                        <constraint firstItem="Y9e-cN-dYY" firstAttribute="height" secondItem="f25-pD-KXQ" secondAttribute="height" id="vEx-Zw-fzD"/>
+                    </constraints>
+                </view>
+                <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="eiB-on-WEb">
+                    <rect key="frame" x="15" y="486" width="140" height="64"/>
+                    <subviews>
+                        <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" buttonType="roundedRect" reversesTitleShadowWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ixG-Dm-vpt">
+                            <rect key="frame" x="24" y="16" width="116" height="32"/>
+                            <color key="backgroundColor" white="0.33333333333333331" alpha="0.67000000000000004" colorSpace="calibratedWhite"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="32" id="mbG-Uk-aIM"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                            <inset key="contentEdgeInsets" minX="0.0" minY="0.0" maxX="20" maxY="0.0"/>
+                            <state key="normal" title="订单查询">
+                                <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </state>
+                        </button>
+                        <view clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dih-Ld-m3e">
+                            <rect key="frame" x="0.0" y="8" width="48" height="48"/>
+                            <subviews>
+                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Icon_Detail" translatesAutoresizingMaskIntoConstraints="NO" id="NcS-Fe-uFR">
+                                    <rect key="frame" x="8" y="8" width="32" height="32"/>
+                                </imageView>
+                            </subviews>
+                            <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                            <constraints>
+                                <constraint firstItem="NcS-Fe-uFR" firstAttribute="top" secondItem="dih-Ld-m3e" secondAttribute="top" constant="8" id="FRB-fd-z1B"/>
+                                <constraint firstAttribute="height" constant="48" id="Jnx-RG-BIy"/>
+                                <constraint firstItem="NcS-Fe-uFR" firstAttribute="leading" secondItem="dih-Ld-m3e" secondAttribute="leading" constant="8" id="Ppa-t9-6y5"/>
+                                <constraint firstAttribute="bottom" secondItem="NcS-Fe-uFR" secondAttribute="bottom" constant="8" id="W47-Sk-S2j"/>
+                                <constraint firstAttribute="width" constant="48" id="ehi-FH-Zkb"/>
+                                <constraint firstAttribute="trailing" secondItem="NcS-Fe-uFR" secondAttribute="trailing" constant="8" id="neg-23-U1m"/>
+                            </constraints>
+                        </view>
+                    </subviews>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="64" id="Kni-eT-PAA"/>
+                        <constraint firstItem="ixG-Dm-vpt" firstAttribute="centerY" secondItem="eiB-on-WEb" secondAttribute="centerY" id="NGK-PE-BMB"/>
+                        <constraint firstAttribute="width" constant="140" id="eFJ-uq-uma"/>
+                        <constraint firstAttribute="trailing" secondItem="ixG-Dm-vpt" secondAttribute="trailing" id="fYp-4n-48e"/>
+                        <constraint firstItem="dih-Ld-m3e" firstAttribute="centerY" secondItem="eiB-on-WEb" secondAttribute="centerY" id="glN-mL-XBa"/>
+                        <constraint firstItem="ixG-Dm-vpt" firstAttribute="leading" secondItem="eiB-on-WEb" secondAttribute="leading" constant="24" id="rMo-31-mkm"/>
+                        <constraint firstItem="dih-Ld-m3e" firstAttribute="leading" secondItem="eiB-on-WEb" secondAttribute="leading" id="xUl-cI-xro"/>
                     </constraints>
                 </view>
             </subviews>
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
             <constraints>
-                <constraint firstItem="qqg-Mk-Usd" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="50" id="Aje-B8-aYF"/>
-                <constraint firstItem="9bG-un-DaQ" firstAttribute="width" secondItem="iN0-l3-epB" secondAttribute="width" multiplier="1:2" id="L3t-NN-V3c"/>
-                <constraint firstItem="qqg-Mk-Usd" firstAttribute="width" secondItem="iN0-l3-epB" secondAttribute="width" multiplier="2:3" id="Tt4-Z6-Qnp"/>
-                <constraint firstItem="9bG-un-DaQ" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="WpC-mN-cEh"/>
-                <constraint firstItem="9bG-un-DaQ" firstAttribute="top" secondItem="qqg-Mk-Usd" secondAttribute="bottom" constant="20" id="Zbv-7S-PUs"/>
-                <constraint firstItem="qqg-Mk-Usd" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="rJ0-st-vM3"/>
+                <constraint firstItem="9bG-un-DaQ" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="-8" id="2Gg-dC-7s9"/>
+                <constraint firstItem="9bG-un-DaQ" firstAttribute="width" secondItem="iN0-l3-epB" secondAttribute="width" multiplier="1:2" id="BGC-sj-Kvh"/>
+                <constraint firstItem="qqg-Mk-Usd" firstAttribute="width" secondItem="iN0-l3-epB" secondAttribute="width" multiplier="2:3" id="EfF-Vd-tk5"/>
+                <constraint firstItem="f25-pD-KXQ" firstAttribute="width" secondItem="iN0-l3-epB" secondAttribute="width" multiplier="4:5" id="IO4-Zm-wzl"/>
+                <constraint firstItem="9bG-un-DaQ" firstAttribute="top" secondItem="qqg-Mk-Usd" secondAttribute="bottom" constant="20" id="XEP-qe-ANM"/>
+                <constraint firstItem="qqg-Mk-Usd" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="-8" id="Y7W-a5-WUX"/>
+                <constraint firstAttribute="trailing" secondItem="f25-pD-KXQ" secondAttribute="trailing" constant="-8" id="eF6-f1-K7n"/>
+                <constraint firstAttribute="bottom" secondItem="f25-pD-KXQ" secondAttribute="bottom" constant="130" id="gpL-Mz-0GC"/>
+                <constraint firstItem="eiB-on-WEb" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="15" id="lt9-s6-Tmp"/>
+                <constraint firstAttribute="bottom" secondItem="eiB-on-WEb" secondAttribute="bottom" constant="50" id="sqS-hh-fFV"/>
+                <constraint firstItem="qqg-Mk-Usd" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="20" id="yJs-NW-sg3"/>
             </constraints>
+            <connections>
+                <outlet property="ARTRow" destination="qqg-Mk-Usd" id="CJL-mJ-Agf"/>
+                <outlet property="CRSRow" destination="9bG-un-DaQ" id="pMp-Fp-7eM"/>
+                <outlet property="CenterView" destination="f25-pD-KXQ" id="cNM-v0-Zzr"/>
+                <outlet property="searchButton" destination="ixG-Dm-vpt" id="FEo-K1-bjY"/>
+                <outlet property="searchIcon" destination="dih-Ld-m3e" id="0fl-uU-9Ly"/>
+                <outlet property="searchRow" destination="eiB-on-WEb" id="OIf-vK-SaO"/>
+            </connections>
         </view>
     </objects>
+    <resources>
+        <image name="Icon_Detail" width="32" height="32"/>
+    </resources>
 </document>

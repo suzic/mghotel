@@ -8,6 +8,13 @@
 
 #import "FuncReservationView.h"
 
+@interface FuncReservationView()
+
+@property (strong, nonatomic) IBOutlet UIView *searchRow;
+@property (strong, nonatomic) IBOutlet UIView *searchIcon;
+
+@end
+
 @implementation FuncReservationView
 
 + (FuncReservationView *)setupReservationView
@@ -21,14 +28,13 @@
     return nil;
 }
 
-- (instancetype)initWithCoder:(NSCoder *)aDecoder
+- (void)awakeFromNib
 {
-    if (self = [super initWithCoder:aDecoder])
-    {
-        self.userInteractionEnabled = YES;
-    }
-    
-    return self;
+    self.ARTRow.layer.cornerRadius = 8.0f;
+    self.CRSRow.layer.cornerRadius = 8.0f;
+    self.CenterView.layer.cornerRadius = 8.0f;
+    self.searchIcon.layer.cornerRadius = 24.0f;
+    self.searchButton.layer.cornerRadius = 8.0f;
 }
 
 /*

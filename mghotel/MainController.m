@@ -36,6 +36,9 @@
     UITapGestureRecognizer *tapService = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(funcPressed:)];
     [self.funcService addGestureRecognizer:tapService];
     
+    UITapGestureRecognizer *tapScreen = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(screenTapped:)];
+    [self.scrollBackground addGestureRecognizer:tapScreen];
+    
     self.funcReservationView = [FuncReservationView setupReservationView];
     [self.scrollBackground addSubview:self.funcReservationView];
     self.funcNavigationView = [FuncReservationView setupReservationView];
@@ -74,16 +77,14 @@
         // 对竖屏时的滚动偏移进行复原
         [self scrollToPage:self.currentPage];
         
-        [self.funcReservationView setFrame:CGRectMake(0, 0, kScreenWidth, kScreenHeight)];
-        [self.funcNavigationView setFrame:CGRectMake(kScreenWidth, 0, kScreenWidth, kScreenHeight)];
-        [self.funcServicenView setFrame:CGRectMake(kScreenWidth * 2, 0, kScreenWidth, kScreenHeight)];
-        [self showFunctionLayer:YES];
+        [self.funcReservationView setFrame:CGRectMake(0, 0, kScreenWidth, self.scrollBackground.frame.size.height)];
+        [self.funcNavigationView setFrame:CGRectMake(kScreenWidth, 0, kScreenWidth, self.scrollBackground.frame.size.height)];
+        [self.funcServicenView setFrame:CGRectMake(kScreenWidth * 2, 0, kScreenWidth, self.scrollBackground.frame.size.height)];
+        self.showFunctionLayer = YES;
     }
     else
     {
-        self.funcReservationView.hidden = YES;
-        self.funcNavigationView.hidden = YES;
-        self.funcServicenView.hidden = YES;
+        self.showFunctionLayer = NO;
     }
 }
 
@@ -165,9 +166,13 @@
 }
 
 // 对前景功能层显示隐藏的控制
-- (void)showFunctionLayer:(BOOL)show
+- (void)setShowFunctionLayer:(BOOL)showFunctionLayer
 {
-    if (show)
+    if (_showFunctionLayer == showFunctionLayer)
+        return;
+    
+    _showFunctionLayer = showFunctionLayer;
+    if (_showFunctionLayer)
     {
         self.funcReservationView.hidden = NO;
         self.funcNavigationView.hidden = NO;
@@ -212,20 +217,26 @@
     if (UIInterfaceOrientationIsPortrait(orientation))
     {
         self.currentPage = (int)(scrollView.contentOffset.x / kScreenWidth);
-        [self showFunctionLayer:YES];
+        self.showFunctionLayer = YES;
     }
 }
 
 // 操作触发：滚动开始的时候隐藏前景功能
 - (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView
 {
-    [self showFunctionLayer:NO];
+    self.showFunctionLayer = NO;
 }
 
 // 操作触发：点击按钮后进行切换
 - (void)funcPressed:(UIGestureRecognizer *)sender
 {
     self.currentPage = sender.view.tag;
+}
+
+// 屏幕单点
+- (void)screenTapped:(UIGestureRecognizer *)sender
+{
+    self.showFunctionLayer = !self.showFunctionLayer;
 }
 
 #pragma mark - Navigation
