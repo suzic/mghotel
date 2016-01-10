@@ -20,6 +20,8 @@
 		D089349D1C4203DF00BF5748 /* FunctionViews.xib in Resources */ = {isa = PBXBuildFile; fileRef = D089349B1C4203DF00BF5748 /* FunctionViews.xib */; };
 		D08934A01C42048A00BF5748 /* FuncReservationView.m in Sources */ = {isa = PBXBuildFile; fileRef = D089349F1C42048A00BF5748 /* FuncReservationView.m */; };
 		D0A4C6741C423F85000BD4B1 /* POIViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D0A4C6731C423F85000BD4B1 /* POIViewController.m */; };
+		D0A4C6761C428FC7000BD4B1 /* Resource.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D0A4C6751C428FC7000BD4B1 /* Resource.xcassets */; };
+		D0A4C6791C42916C000BD4B1 /* POICell.m in Sources */ = {isa = PBXBuildFile; fileRef = D0A4C6781C42916C000BD4B1 /* POICell.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -66,6 +68,9 @@
 		D089349F1C42048A00BF5748 /* FuncReservationView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FuncReservationView.m; sourceTree = "<group>"; };
 		D0A4C6721C423F85000BD4B1 /* POIViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = POIViewController.h; sourceTree = "<group>"; };
 		D0A4C6731C423F85000BD4B1 /* POIViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = POIViewController.m; sourceTree = "<group>"; };
+		D0A4C6751C428FC7000BD4B1 /* Resource.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Resource.xcassets; sourceTree = "<group>"; };
+		D0A4C6771C42916C000BD4B1 /* POICell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = POICell.h; sourceTree = "<group>"; };
+		D0A4C6781C42916C000BD4B1 /* POICell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = POICell.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -128,7 +133,10 @@
 				D067059F1C3F87810075CBE8 /* MainController.m */,
 				D0A4C6721C423F85000BD4B1 /* POIViewController.h */,
 				D0A4C6731C423F85000BD4B1 /* POIViewController.m */,
+				D0A4C6771C42916C000BD4B1 /* POICell.h */,
+				D0A4C6781C42916C000BD4B1 /* POICell.m */,
 				D057892C1C3CE16F0051E1A0 /* Assets.xcassets */,
+				D0A4C6751C428FC7000BD4B1 /* Resource.xcassets */,
 				D057891D1C3CE16F0051E1A0 /* Supporting Files */,
 			);
 			path = mghotel;
@@ -281,6 +289,7 @@
 				D057892D1C3CE16F0051E1A0 /* Assets.xcassets in Resources */,
 				D089349D1C4203DF00BF5748 /* FunctionViews.xib in Resources */,
 				D057892B1C3CE16F0051E1A0 /* Main.storyboard in Resources */,
+				D0A4C6761C428FC7000BD4B1 /* Resource.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -309,6 +318,7 @@
 				D08934A01C42048A00BF5748 /* FuncReservationView.m in Sources */,
 				D067059D1C3F803D0075CBE8 /* SettingsController.m in Sources */,
 				D06705A41C3F90A90075CBE8 /* FrameController.m in Sources */,
+				D0A4C6791C42916C000BD4B1 /* POICell.m in Sources */,
 				D05789221C3CE16F0051E1A0 /* AppDelegate.m in Sources */,
 				D0A4C6741C423F85000BD4B1 /* POIViewController.m in Sources */,
 				D057891F1C3CE16F0051E1A0 /* main.m in Sources */,
