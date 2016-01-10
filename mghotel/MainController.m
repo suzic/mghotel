@@ -27,8 +27,14 @@
 {
     [super viewDidLoad];
     
+    // 计算滚动视图
     [self resizeScrollView:CGSizeMake(kScreenWidth, kScreenHeight)];
+    
+    // 图层调整
+    [self.view bringSubviewToFront:self.funcNavigationView];
+    [self.view bringSubviewToFront:self.bottomView];
 
+    // 对底部栏进行操作事件注册
     UITapGestureRecognizer *tapReservation = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(funcPressed:)];
     [self.funcReservation addGestureRecognizer:tapReservation];
     UITapGestureRecognizer *tapNavigation = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(funcPressed:)];
@@ -36,13 +42,15 @@
     UITapGestureRecognizer *tapService = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(funcPressed:)];
     [self.funcService addGestureRecognizer:tapService];
     
+    // 对滚动视图增加一个点击手势
     UITapGestureRecognizer *tapScreen = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(screenTapped:)];
     [self.scrollBackground addGestureRecognizer:tapScreen];
+    UITapGestureRecognizer *tapList = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(screenTapped:)];
+    [self.funcNavigationView addGestureRecognizer:tapList];
     
+    // 添加滚动视图功能层
     self.funcReservationView = [FuncReservationView setupReservationView];
     [self.scrollBackground addSubview:self.funcReservationView];
-    self.funcNavigationView = [FuncReservationView setupReservationView];
-    [self.scrollBackground addSubview:self.funcNavigationView];
     self.funcServicenView = [FuncReservationView setupReservationView];
     [self.scrollBackground addSubview:self.funcServicenView];
 
@@ -78,7 +86,6 @@
         [self scrollToPage:self.currentPage];
         
         [self.funcReservationView setFrame:CGRectMake(0, 0, kScreenWidth, self.scrollBackground.frame.size.height)];
-        [self.funcNavigationView setFrame:CGRectMake(kScreenWidth, 0, kScreenWidth, self.scrollBackground.frame.size.height)];
         [self.funcServicenView setFrame:CGRectMake(kScreenWidth * 2, 0, kScreenWidth, self.scrollBackground.frame.size.height)];
         self.showFunctionLayer = YES;
     }
@@ -142,6 +149,8 @@
     [self.funcNavigation setTextColor:[UIColor darkGrayColor]];
     [self.funcService setTextColor:[UIColor darkGrayColor]];
     
+    self.showFunctionLayer = NO;
+    
     switch (index)
     {
         case 0:
@@ -175,21 +184,21 @@
     if (_showFunctionLayer)
     {
         self.funcReservationView.hidden = NO;
-        self.funcNavigationView.hidden = NO;
+        self.funcNavigationView.hidden = self.currentPage == 1 ? NO : YES;
         self.funcServicenView.hidden = NO;
         self.funcReservationView.alpha = 0;
         self.funcNavigationView.alpha = 0;
         self.funcServicenView.alpha = 0;
         [UIView animateWithDuration:0.5 animations:^{
             self.funcReservationView.alpha = 1;
-            self.funcNavigationView.alpha = 1;
+            self.funcNavigationView.alpha = self.currentPage == 1 ? 1 : 0;
             self.funcServicenView.alpha = 1;
         }];
     }
     else
     {
         self.funcReservationView.alpha = 1;
-        self.funcNavigationView.alpha = 1;
+        self.funcNavigationView.alpha = self.currentPage == 1 ? 1 : 0;;
         self.funcServicenView.alpha = 1;
         [UIView animateWithDuration:0.5 animations:^{
             self.funcReservationView.alpha = 0;

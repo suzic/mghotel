@@ -15,8 +15,8 @@
 @property (strong, nonatomic) IBOutlet UILabel *funcNavigation;
 @property (strong, nonatomic) IBOutlet UILabel *funcService;
 
+@property (strong, nonatomic) IBOutlet UIView *funcNavigationView;
 @property (retain, nonatomic) FuncReservationView *funcReservationView;
-@property (retain, nonatomic) FuncReservationView *funcNavigationView;
 @property (retain, nonatomic) FuncReservationView *funcServicenView;
 
 @property (assign, nonatomic) BOOL showFunctionLayer;
