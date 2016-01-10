@@ -83,13 +83,15 @@
         [self.navigationController setNavigationBarHidden:NO animated:YES];
         [self.bottomView setHidden:NO];
     }
-    else
+    else if (UIDeviceOrientationIsLandscape([[UIDevice currentDevice] orientation]))
     {
         self.worldImageWidth.constant = size.width;
         self.worldImageHeight.constant = size.height;
         [self.navigationController setNavigationBarHidden:YES animated:YES];
         [self.bottomView setHidden:YES];
     }
+    // else 是非横竖屏的旋转，一般是正反屏的状态，忽略
+    // 这里不用UIInterfaceOrientation
 }
 
 // 设置页码，该属性设置将会同时对标签和滚动视图同时进行处理
@@ -145,7 +147,11 @@
 // 操作触发：滚动结束的时候进行切换
 - (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView
 {
-    if (UIDeviceOrientationIsPortrait([[UIDevice currentDevice] orientation]))
+    // UIDevice的设备orientation的问题：对于设备而言，除了横竖屏之外还有屏幕朝上还是朝下的判断。而这里我们只要横竖屏判断。
+    // 因此不要用这个 [[UIDevice currentDevice] orientation]
+
+    UIInterfaceOrientation orientation = [UIApplication sharedApplication].statusBarOrientation;
+    if (UIInterfaceOrientationIsPortrait(orientation))
     {
         self.currentPage = (int)(scrollView.contentOffset.x / kScreenWidth);
     }
