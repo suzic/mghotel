@@ -72,10 +72,10 @@
                     </constraints>
                 </view>
                 <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="eiB-on-WEb">
-                    <rect key="frame" x="15" y="486" width="140" height="64"/>
+                    <rect key="frame" x="15" y="486" width="160" height="64"/>
                     <subviews>
                         <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" buttonType="roundedRect" reversesTitleShadowWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ixG-Dm-vpt">
-                            <rect key="frame" x="24" y="16" width="116" height="32"/>
+                            <rect key="frame" x="24" y="16" width="136" height="32"/>
                             <color key="backgroundColor" white="0.33333333333333331" alpha="0.67000000000000004" colorSpace="calibratedWhite"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="32" id="mbG-Uk-aIM"/>
@@ -87,20 +87,20 @@
                             </state>
                         </button>
                         <view clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dih-Ld-m3e">
-                            <rect key="frame" x="0.0" y="8" width="48" height="48"/>
+                            <rect key="frame" x="0.0" y="0.0" width="64" height="64"/>
                             <subviews>
                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Icon_Detail" translatesAutoresizingMaskIntoConstraints="NO" id="NcS-Fe-uFR">
-                                    <rect key="frame" x="8" y="8" width="32" height="32"/>
+                                    <rect key="frame" x="16" y="16" width="32" height="32"/>
                                 </imageView>
                             </subviews>
-                            <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                            <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                             <constraints>
-                                <constraint firstItem="NcS-Fe-uFR" firstAttribute="top" secondItem="dih-Ld-m3e" secondAttribute="top" constant="8" id="FRB-fd-z1B"/>
-                                <constraint firstAttribute="height" constant="48" id="Jnx-RG-BIy"/>
-                                <constraint firstItem="NcS-Fe-uFR" firstAttribute="leading" secondItem="dih-Ld-m3e" secondAttribute="leading" constant="8" id="Ppa-t9-6y5"/>
-                                <constraint firstAttribute="bottom" secondItem="NcS-Fe-uFR" secondAttribute="bottom" constant="8" id="W47-Sk-S2j"/>
-                                <constraint firstAttribute="width" constant="48" id="ehi-FH-Zkb"/>
-                                <constraint firstAttribute="trailing" secondItem="NcS-Fe-uFR" secondAttribute="trailing" constant="8" id="neg-23-U1m"/>
+                                <constraint firstItem="NcS-Fe-uFR" firstAttribute="top" secondItem="dih-Ld-m3e" secondAttribute="top" constant="16" id="FRB-fd-z1B"/>
+                                <constraint firstAttribute="height" constant="64" id="Jnx-RG-BIy"/>
+                                <constraint firstItem="NcS-Fe-uFR" firstAttribute="leading" secondItem="dih-Ld-m3e" secondAttribute="leading" constant="16" id="Ppa-t9-6y5"/>
+                                <constraint firstAttribute="bottom" secondItem="NcS-Fe-uFR" secondAttribute="bottom" constant="16" id="W47-Sk-S2j"/>
+                                <constraint firstAttribute="width" constant="64" id="ehi-FH-Zkb"/>
+                                <constraint firstAttribute="trailing" secondItem="NcS-Fe-uFR" secondAttribute="trailing" constant="16" id="neg-23-U1m"/>
                             </constraints>
                         </view>
                     </subviews>
@@ -108,7 +108,7 @@
                     <constraints>
                         <constraint firstAttribute="height" constant="64" id="Kni-eT-PAA"/>
                         <constraint firstItem="ixG-Dm-vpt" firstAttribute="centerY" secondItem="eiB-on-WEb" secondAttribute="centerY" id="NGK-PE-BMB"/>
-                        <constraint firstAttribute="width" constant="140" id="eFJ-uq-uma"/>
+                        <constraint firstAttribute="width" constant="160" id="eFJ-uq-uma"/>
                         <constraint firstAttribute="trailing" secondItem="ixG-Dm-vpt" secondAttribute="trailing" id="fYp-4n-48e"/>
                         <constraint firstItem="dih-Ld-m3e" firstAttribute="centerY" secondItem="eiB-on-WEb" secondAttribute="centerY" id="glN-mL-XBa"/>
                         <constraint firstItem="ixG-Dm-vpt" firstAttribute="leading" secondItem="eiB-on-WEb" secondAttribute="leading" constant="24" id="rMo-31-mkm"/>
@@ -138,9 +138,167 @@
                 <outlet property="searchIcon" destination="dih-Ld-m3e" id="0fl-uU-9Ly"/>
                 <outlet property="searchRow" destination="eiB-on-WEb" id="OIf-vK-SaO"/>
             </connections>
+            <point key="canvasLocation" x="445" y="403"/>
+        </view>
+        <view clipsSubviews="YES" contentMode="scaleToFill" id="7L8-i3-5G4" customClass="FuncServiceView">
+            <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <subviews>
+                <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="r6f-g1-thg">
+                    <rect key="frame" x="50" y="30" width="500" height="50"/>
+                    <subviews>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" reversesTitleShadowWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LQO-fI-Gr2">
+                            <rect key="frame" x="0.0" y="0.0" width="500" height="50"/>
+                            <state key="normal" title="呼叫服务">
+                                <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                            </state>
+                        </button>
+                    </subviews>
+                    <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="0.79843222128378377" colorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstItem="LQO-fI-Gr2" firstAttribute="height" secondItem="r6f-g1-thg" secondAttribute="height" id="0dT-WQ-ld4"/>
+                        <constraint firstItem="LQO-fI-Gr2" firstAttribute="width" secondItem="r6f-g1-thg" secondAttribute="width" id="7b5-kM-sHS"/>
+                        <constraint firstAttribute="height" constant="50" id="Wf7-dO-1N3"/>
+                        <constraint firstItem="LQO-fI-Gr2" firstAttribute="centerX" secondItem="r6f-g1-thg" secondAttribute="centerX" id="gxF-99-V15"/>
+                        <constraint firstItem="LQO-fI-Gr2" firstAttribute="centerY" secondItem="r6f-g1-thg" secondAttribute="centerY" id="jRu-Nz-tLf"/>
+                    </constraints>
+                </view>
+                <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="UiY-XE-kMv">
+                    <rect key="frame" x="128" y="300" width="480" height="50"/>
+                    <subviews>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" reversesTitleShadowWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="y9e-pV-WY0">
+                            <rect key="frame" x="0.0" y="0.0" width="480" height="50"/>
+                            <inset key="contentEdgeInsets" minX="20" minY="0.0" maxX="0.0" maxY="0.0"/>
+                            <state key="normal" title="消费挂账单（入住后可用）">
+                                <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </state>
+                        </button>
+                    </subviews>
+                    <color key="backgroundColor" white="0.33333333329999998" alpha="0.66577808279999995" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstItem="y9e-pV-WY0" firstAttribute="width" secondItem="UiY-XE-kMv" secondAttribute="width" id="0qt-RB-l6Z"/>
+                        <constraint firstAttribute="height" constant="50" id="C1Y-SI-qUU"/>
+                        <constraint firstItem="y9e-pV-WY0" firstAttribute="centerX" secondItem="UiY-XE-kMv" secondAttribute="centerX" id="H5a-YN-pni"/>
+                        <constraint firstItem="y9e-pV-WY0" firstAttribute="height" secondItem="UiY-XE-kMv" secondAttribute="height" id="Klt-xw-KfV"/>
+                        <constraint firstItem="y9e-pV-WY0" firstAttribute="centerY" secondItem="UiY-XE-kMv" secondAttribute="centerY" id="ebO-Md-LpD"/>
+                    </constraints>
+                </view>
+                <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qcx-xz-V3A">
+                    <rect key="frame" x="128" y="360" width="480" height="50"/>
+                    <subviews>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" reversesTitleShadowWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dX5-IN-Gq1">
+                            <rect key="frame" x="0.0" y="0.0" width="480" height="50"/>
+                            <inset key="contentEdgeInsets" minX="20" minY="0.0" maxX="0.0" maxY="0.0"/>
+                            <state key="normal" title="客房送餐单（入住／绑房后可用）">
+                                <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                            </state>
+                        </button>
+                    </subviews>
+                    <color key="backgroundColor" white="0.66666666669999997" alpha="0.67000000000000004" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstItem="dX5-IN-Gq1" firstAttribute="height" secondItem="qcx-xz-V3A" secondAttribute="height" id="QA4-eV-V74"/>
+                        <constraint firstItem="dX5-IN-Gq1" firstAttribute="width" secondItem="qcx-xz-V3A" secondAttribute="width" id="U3j-k8-uPt"/>
+                        <constraint firstItem="dX5-IN-Gq1" firstAttribute="centerY" secondItem="qcx-xz-V3A" secondAttribute="centerY" id="kVa-2G-YL0"/>
+                        <constraint firstAttribute="height" constant="50" id="nu1-a8-k7V"/>
+                        <constraint firstItem="dX5-IN-Gq1" firstAttribute="centerX" secondItem="qcx-xz-V3A" secondAttribute="centerX" id="u9n-j6-r3n"/>
+                    </constraints>
+                </view>
+                <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Zkl-T1-q35">
+                    <rect key="frame" x="128" y="420" width="480" height="50"/>
+                    <subviews>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" reversesTitleShadowWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hjX-BZ-Qe5">
+                            <rect key="frame" x="0.0" y="0.0" width="480" height="50"/>
+                            <inset key="contentEdgeInsets" minX="20" minY="0.0" maxX="0.0" maxY="0.0"/>
+                            <state key="normal" title="手机 e 房卡（海棠湾入住可用）">
+                                <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                            </state>
+                        </button>
+                    </subviews>
+                    <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="0.80000000000000004" colorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstItem="hjX-BZ-Qe5" firstAttribute="height" secondItem="Zkl-T1-q35" secondAttribute="height" id="4s0-Ap-gfk"/>
+                        <constraint firstItem="hjX-BZ-Qe5" firstAttribute="centerX" secondItem="Zkl-T1-q35" secondAttribute="centerX" id="E5j-ZV-kia"/>
+                        <constraint firstItem="hjX-BZ-Qe5" firstAttribute="centerY" secondItem="Zkl-T1-q35" secondAttribute="centerY" id="IfG-fa-7lW"/>
+                        <constraint firstItem="hjX-BZ-Qe5" firstAttribute="width" secondItem="Zkl-T1-q35" secondAttribute="width" id="LQI-Ml-i0k"/>
+                        <constraint firstAttribute="height" constant="50" id="u1N-vP-wYr"/>
+                    </constraints>
+                </view>
+                <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7wZ-51-iaM">
+                    <rect key="frame" x="425" y="486" width="160" height="64"/>
+                    <subviews>
+                        <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" reversesTitleShadowWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="u6w-uz-8M7">
+                            <rect key="frame" x="0.0" y="16" width="136" height="32"/>
+                            <color key="backgroundColor" white="0.33333333329999998" alpha="0.67000000000000004" colorSpace="calibratedWhite"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="32" id="akx-S4-KbO"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                            <inset key="contentEdgeInsets" minX="20" minY="0.0" maxX="0.0" maxY="0.0"/>
+                            <state key="normal" title="入住登记">
+                                <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </state>
+                        </button>
+                        <view clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="KnA-hg-ADT">
+                            <rect key="frame" x="96" y="0.0" width="64" height="64"/>
+                            <subviews>
+                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Icon_Check" translatesAutoresizingMaskIntoConstraints="NO" id="2n0-2f-0hh">
+                                    <rect key="frame" x="16" y="16" width="32" height="32"/>
+                                </imageView>
+                            </subviews>
+                            <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                            <constraints>
+                                <constraint firstAttribute="trailing" secondItem="2n0-2f-0hh" secondAttribute="trailing" constant="16" id="Ctr-rW-7u9"/>
+                                <constraint firstAttribute="width" constant="64" id="cli-yn-POg"/>
+                                <constraint firstItem="2n0-2f-0hh" firstAttribute="top" secondItem="KnA-hg-ADT" secondAttribute="top" constant="16" id="fTq-KI-dEP"/>
+                                <constraint firstAttribute="bottom" secondItem="2n0-2f-0hh" secondAttribute="bottom" constant="16" id="h2s-sL-yuw"/>
+                                <constraint firstItem="2n0-2f-0hh" firstAttribute="leading" secondItem="KnA-hg-ADT" secondAttribute="leading" constant="16" id="iS7-Fd-KQR"/>
+                                <constraint firstAttribute="height" constant="64" id="vKo-0X-M3x"/>
+                            </constraints>
+                        </view>
+                    </subviews>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstItem="KnA-hg-ADT" firstAttribute="centerY" secondItem="7wZ-51-iaM" secondAttribute="centerY" id="Et8-tO-vlD"/>
+                        <constraint firstAttribute="trailing" secondItem="KnA-hg-ADT" secondAttribute="trailing" id="IRa-6l-Poq"/>
+                        <constraint firstAttribute="trailing" secondItem="u6w-uz-8M7" secondAttribute="trailing" constant="24" id="Tny-nP-nvk"/>
+                        <constraint firstItem="u6w-uz-8M7" firstAttribute="centerY" secondItem="7wZ-51-iaM" secondAttribute="centerY" id="WtU-Uy-iob"/>
+                        <constraint firstItem="u6w-uz-8M7" firstAttribute="leading" secondItem="7wZ-51-iaM" secondAttribute="leading" id="Zl8-FZ-3ca"/>
+                        <constraint firstAttribute="width" constant="160" id="Zm1-Dp-B31"/>
+                        <constraint firstAttribute="height" constant="64" id="el7-71-Ayy"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstItem="qcx-xz-V3A" firstAttribute="top" secondItem="UiY-XE-kMv" secondAttribute="bottom" constant="10" id="16h-SZ-fV8"/>
+                <constraint firstItem="Zkl-T1-q35" firstAttribute="top" secondItem="qcx-xz-V3A" secondAttribute="bottom" constant="10" id="Asu-KR-2qH"/>
+                <constraint firstItem="r6f-g1-thg" firstAttribute="top" secondItem="7L8-i3-5G4" secondAttribute="top" constant="30" id="DO8-D3-Rwi"/>
+                <constraint firstAttribute="trailing" secondItem="7wZ-51-iaM" secondAttribute="trailing" constant="15" id="Gtx-iQ-gHd"/>
+                <constraint firstItem="r6f-g1-thg" firstAttribute="centerX" secondItem="7L8-i3-5G4" secondAttribute="centerX" id="Hya-f9-QJT"/>
+                <constraint firstAttribute="bottom" secondItem="7wZ-51-iaM" secondAttribute="bottom" constant="50" id="Prk-sV-hNH"/>
+                <constraint firstAttribute="trailing" secondItem="qcx-xz-V3A" secondAttribute="trailing" constant="-8" id="R6U-SE-Y70"/>
+                <constraint firstItem="qcx-xz-V3A" firstAttribute="width" secondItem="7L8-i3-5G4" secondAttribute="width" multiplier="4:5" id="b7A-Zp-vWf"/>
+                <constraint firstItem="r6f-g1-thg" firstAttribute="width" secondItem="7L8-i3-5G4" secondAttribute="width" multiplier="5:6" id="d59-AB-VdG"/>
+                <constraint firstAttribute="bottom" secondItem="Zkl-T1-q35" secondAttribute="bottom" constant="130" id="h6E-Dr-Du4"/>
+                <constraint firstAttribute="trailing" secondItem="UiY-XE-kMv" secondAttribute="trailing" constant="-8" id="npO-aK-cKc"/>
+                <constraint firstItem="Zkl-T1-q35" firstAttribute="width" secondItem="7L8-i3-5G4" secondAttribute="width" multiplier="4:5" id="ohr-dd-nVS"/>
+                <constraint firstItem="UiY-XE-kMv" firstAttribute="width" secondItem="7L8-i3-5G4" secondAttribute="width" multiplier="4:5" id="wbQ-IF-CZO"/>
+                <constraint firstAttribute="trailing" secondItem="Zkl-T1-q35" secondAttribute="trailing" constant="-8" id="zFD-bx-i6p"/>
+            </constraints>
+            <connections>
+                <outlet property="BillRow" destination="UiY-XE-kMv" id="3oK-QR-Prh"/>
+                <outlet property="FoodRow" destination="qcx-xz-V3A" id="EQa-qy-92h"/>
+                <outlet property="KeyRow" destination="Zkl-T1-q35" id="ja2-0d-BNi"/>
+                <outlet property="callRow" destination="r6f-g1-thg" id="BQb-HA-hBD"/>
+                <outlet property="checkInButton" destination="u6w-uz-8M7" id="oke-Ly-4Cm"/>
+                <outlet property="checkInIcon" destination="KnA-hg-ADT" id="HNC-Ok-h8D"/>
+                <outlet property="checkInRow" destination="7wZ-51-iaM" id="H40-Nh-3fR"/>
+            </connections>
+            <point key="canvasLocation" x="445" y="1071"/>
         </view>
     </objects>
     <resources>
+        <image name="Icon_Check" width="64" height="64"/>
         <image name="Icon_Detail" width="32" height="32"/>
     </resources>
 </document>

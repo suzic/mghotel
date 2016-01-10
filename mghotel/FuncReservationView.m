@@ -33,20 +33,20 @@
     self.ARTRow.layer.cornerRadius = 8.0f;
     self.CRSRow.layer.cornerRadius = 8.0f;
     self.CenterView.layer.cornerRadius = 8.0f;
-    self.searchIcon.layer.cornerRadius = 24.0f;
+    self.searchIcon.layer.cornerRadius = 32.0f;
     self.searchButton.layer.cornerRadius = 8.0f;
     
     self.ARTRow.layer.borderColor = [UIColor lightGrayColor].CGColor;
     self.CRSRow.layer.borderColor = [UIColor darkGrayColor].CGColor;
     self.CenterView.layer.borderColor = [UIColor lightGrayColor].CGColor;
-//    self.searchIcon.layer.borderColor = [UIColor lightGrayColor].CGColor;
-//    self.searchButton.layer.borderColor = [UIColor lightGrayColor].CGColor;
+    // self.searchIcon.layer.borderColor = [UIColor lightGrayColor].CGColor;
+    // self.searchButton.layer.borderColor = [UIColor lightGrayColor].CGColor;
 
     self.ARTRow.layer.borderWidth = 0.5f;
     self.CRSRow.layer.borderWidth = 0.5f;
     self.CenterView.layer.borderWidth = 0.5f;
-//    self.searchIcon.layer.borderWidth = 0.5f;
-//    self.searchButton.layer.borderWidth = 0.5f;
+    // self.searchIcon.layer.borderWidth = 0.5f;
+    // self.searchButton.layer.borderWidth = 0.5f;
 }
 
 /*

@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "FuncReservationView.h"
+#import "FuncServiceView.h"
 
 @interface MainController : UIViewController
 
@@ -17,7 +18,7 @@
 
 @property (strong, nonatomic) IBOutlet UIView *funcNavigationView;
 @property (retain, nonatomic) FuncReservationView *funcReservationView;
-@property (retain, nonatomic) FuncReservationView *funcServicenView;
+@property (retain, nonatomic) FuncServiceView *funcServicenView;
 
 @property (assign, nonatomic) BOOL showFunctionLayer;
 

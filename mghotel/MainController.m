@@ -51,7 +51,7 @@
     // 添加滚动视图功能层
     self.funcReservationView = [FuncReservationView setupReservationView];
     [self.scrollBackground addSubview:self.funcReservationView];
-    self.funcServicenView = [FuncReservationView setupReservationView];
+    self.funcServicenView = [FuncServiceView setupServiceView];
     [self.scrollBackground addSubview:self.funcServicenView];
 
     // 设置页面索引在变动的时候会执行一次初始化，故特意先设置NSNotFound值以后再置为0
