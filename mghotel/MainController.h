@@ -7,11 +7,16 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "FuncReservationView.h"
 
 @interface MainController : UIViewController
 
 @property (strong, nonatomic) IBOutlet UILabel *funcReservation;
 @property (strong, nonatomic) IBOutlet UILabel *funcNavigation;
 @property (strong, nonatomic) IBOutlet UILabel *funcService;
+
+@property (retain, nonatomic) FuncReservationView *funcReservationView;
+@property (retain, nonatomic) FuncReservationView *funcNavigationView;
+@property (retain, nonatomic) FuncReservationView *funcServicenView;
 
 @end

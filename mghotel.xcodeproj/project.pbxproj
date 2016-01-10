@@ -17,6 +17,8 @@
 		D067059D1C3F803D0075CBE8 /* SettingsController.m in Sources */ = {isa = PBXBuildFile; fileRef = D067059C1C3F803D0075CBE8 /* SettingsController.m */; };
 		D06705A01C3F87810075CBE8 /* MainController.m in Sources */ = {isa = PBXBuildFile; fileRef = D067059F1C3F87810075CBE8 /* MainController.m */; };
 		D06705A41C3F90A90075CBE8 /* FrameController.m in Sources */ = {isa = PBXBuildFile; fileRef = D06705A31C3F90A90075CBE8 /* FrameController.m */; };
+		D089349D1C4203DF00BF5748 /* FunctionViews.xib in Resources */ = {isa = PBXBuildFile; fileRef = D089349B1C4203DF00BF5748 /* FunctionViews.xib */; };
+		D08934A01C42048A00BF5748 /* FuncReservationView.m in Sources */ = {isa = PBXBuildFile; fileRef = D089349F1C42048A00BF5748 /* FuncReservationView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -58,6 +60,9 @@
 		D06705A11C3F885A0075CBE8 /* Commons.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Commons.h; sourceTree = "<group>"; };
 		D06705A21C3F90A90075CBE8 /* FrameController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FrameController.h; sourceTree = "<group>"; };
 		D06705A31C3F90A90075CBE8 /* FrameController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FrameController.m; sourceTree = "<group>"; };
+		D089349C1C4203DF00BF5748 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/FunctionViews.xib; sourceTree = "<group>"; };
+		D089349E1C42048A00BF5748 /* FuncReservationView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FuncReservationView.h; sourceTree = "<group>"; };
+		D089349F1C42048A00BF5748 /* FuncReservationView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FuncReservationView.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -109,6 +114,7 @@
 			isa = PBXGroup;
 			children = (
 				D05789291C3CE16F0051E1A0 /* Main.storyboard */,
+				D089349B1C4203DF00BF5748 /* FunctionViews.xib */,
 				D05789201C3CE16F0051E1A0 /* AppDelegate.h */,
 				D05789211C3CE16F0051E1A0 /* AppDelegate.m */,
 				D06705A21C3F90A90075CBE8 /* FrameController.h */,
@@ -119,6 +125,8 @@
 				D067059F1C3F87810075CBE8 /* MainController.m */,
 				D057892C1C3CE16F0051E1A0 /* Assets.xcassets */,
 				D057891D1C3CE16F0051E1A0 /* Supporting Files */,
+				D089349E1C42048A00BF5748 /* FuncReservationView.h */,
+				D089349F1C42048A00BF5748 /* FuncReservationView.m */,
 			);
 			path = mghotel;
 			sourceTree = "<group>";
@@ -258,6 +266,7 @@
 			files = (
 				D05789301C3CE16F0051E1A0 /* LaunchScreen.storyboard in Resources */,
 				D057892D1C3CE16F0051E1A0 /* Assets.xcassets in Resources */,
+				D089349D1C4203DF00BF5748 /* FunctionViews.xib in Resources */,
 				D057892B1C3CE16F0051E1A0 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -284,6 +293,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D06705A01C3F87810075CBE8 /* MainController.m in Sources */,
+				D08934A01C42048A00BF5748 /* FuncReservationView.m in Sources */,
 				D067059D1C3F803D0075CBE8 /* SettingsController.m in Sources */,
 				D06705A41C3F90A90075CBE8 /* FrameController.m in Sources */,
 				D05789221C3CE16F0051E1A0 /* AppDelegate.m in Sources */,
@@ -337,6 +347,14 @@
 				D057892F1C3CE16F0051E1A0 /* Base */,
 			);
 			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+		D089349B1C4203DF00BF5748 /* FunctionViews.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				D089349C1C4203DF00BF5748 /* Base */,
+			);
+			name = FunctionViews.xib;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */

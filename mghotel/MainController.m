@@ -35,7 +35,15 @@
     [self.funcNavigation addGestureRecognizer:tapNavigation];
     UITapGestureRecognizer *tapService = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(funcPressed:)];
     [self.funcService addGestureRecognizer:tapService];
+    
+    self.funcReservationView = [FuncReservationView setupReservationView];
+    [self.scrollBackground addSubview:self.funcReservationView];
+    self.funcNavigationView = [FuncReservationView setupReservationView];
+    [self.scrollBackground addSubview:self.funcNavigationView];
+    self.funcServicenView = [FuncReservationView setupReservationView];
+    [self.scrollBackground addSubview:self.funcServicenView];
 
+    // 设置页面索引在变动的时候会执行一次初始化，故特意先设置NSNotFound值以后再置为0
     _currentPage = NSNotFound;
     self.currentPage = 0;
 }
@@ -57,11 +65,25 @@
 - (void)viewDidLayoutSubviews
 {
     [super viewDidLayoutSubviews];
-
-    // 对竖屏时的滚动偏移进行复原
-    if (UIDeviceOrientationIsPortrait([[UIDevice currentDevice] orientation]))
+    
+    // UIDevice的设备orientation的问题：对于设备而言，除了横竖屏之外还有屏幕朝上还是朝下的判断。而这里我们只要横竖屏判断。
+    // 因此不要用这个 [[UIDevice currentDevice] orientation]
+    UIInterfaceOrientation orientation = [UIApplication sharedApplication].statusBarOrientation;
+    if (UIInterfaceOrientationIsPortrait(orientation))
     {
+        // 对竖屏时的滚动偏移进行复原
         [self scrollToPage:self.currentPage];
+        
+        [self.funcReservationView setFrame:CGRectMake(0, 0, kScreenWidth, kScreenHeight)];
+        [self.funcNavigationView setFrame:CGRectMake(kScreenWidth, 0, kScreenWidth, kScreenHeight)];
+        [self.funcServicenView setFrame:CGRectMake(kScreenWidth * 2, 0, kScreenWidth, kScreenHeight)];
+        [self showFunctionLayer:YES];
+    }
+    else
+    {
+        self.funcReservationView.hidden = YES;
+        self.funcNavigationView.hidden = YES;
+        self.funcServicenView.hidden = YES;
     }
 }
 
@@ -90,7 +112,7 @@
         [self.navigationController setNavigationBarHidden:YES animated:YES];
         [self.bottomView setHidden:YES];
     }
-    // else 是非横竖屏的旋转，一般是正反屏的状态，忽略
+    // else 再有其他的变化是非横竖屏的旋转，一般是正反屏的状态，忽略
     // 这里不用UIInterfaceOrientation
 }
 
@@ -124,21 +146,58 @@
         case 0:
             [self.funcReservation setTextColor:[UIColor blackColor]];
             [self.funcReservation setFont:[UIFont systemFontOfSize:20.0f]];
-            [self.funcNavigation setFont:[UIFont systemFontOfSize:17.0f]];
-            [self.funcService setFont:[UIFont systemFontOfSize:17.0f]];
+            [self.funcNavigation setFont:[UIFont systemFontOfSize:15.0f]];
+            [self.funcService setFont:[UIFont systemFontOfSize:15.0f]];
             break;
         case 1:
             [self.funcNavigation setTextColor:[UIColor blackColor]];
-            [self.funcReservation setFont:[UIFont systemFontOfSize:17.0f]];
+            [self.funcReservation setFont:[UIFont systemFontOfSize:15.0f]];
             [self.funcNavigation setFont:[UIFont systemFontOfSize:20.0f]];
-            [self.funcService setFont:[UIFont systemFontOfSize:17.0f]];
+            [self.funcService setFont:[UIFont systemFontOfSize:15.0f]];
             break;
         case 2:
             [self.funcService setTextColor:[UIColor blackColor]];
-            [self.funcReservation setFont:[UIFont systemFontOfSize:17.0f]];
-            [self.funcNavigation setFont:[UIFont systemFontOfSize:17.0f]];
+            [self.funcReservation setFont:[UIFont systemFontOfSize:15.0f]];
+            [self.funcNavigation setFont:[UIFont systemFontOfSize:15.0f]];
             [self.funcService setFont:[UIFont systemFontOfSize:20.0f]];
             break;
+    }
+}
+
+// 对前景功能层显示隐藏的控制
+- (void)showFunctionLayer:(BOOL)show
+{
+    if (show)
+    {
+        self.funcReservationView.hidden = NO;
+        self.funcNavigationView.hidden = NO;
+        self.funcServicenView.hidden = NO;
+        self.funcReservationView.alpha = 0;
+        self.funcNavigationView.alpha = 0;
+        self.funcServicenView.alpha = 0;
+        [UIView animateWithDuration:0.5 animations:^{
+            self.funcReservationView.alpha = 1;
+            self.funcNavigationView.alpha = 1;
+            self.funcServicenView.alpha = 1;
+        }];
+    }
+    else
+    {
+        self.funcReservationView.alpha = 1;
+        self.funcNavigationView.alpha = 1;
+        self.funcServicenView.alpha = 1;
+        [UIView animateWithDuration:0.5 animations:^{
+            self.funcReservationView.alpha = 0;
+            self.funcNavigationView.alpha = 0;
+            self.funcServicenView.alpha = 0;
+        } completion:^(BOOL finished) {
+            if (finished == YES)
+            {
+                self.funcReservationView.hidden = YES;
+                self.funcNavigationView.hidden = YES;
+                self.funcServicenView.hidden = YES;
+            }
+        }];
     }
 }
 
@@ -149,12 +208,18 @@
 {
     // UIDevice的设备orientation的问题：对于设备而言，除了横竖屏之外还有屏幕朝上还是朝下的判断。而这里我们只要横竖屏判断。
     // 因此不要用这个 [[UIDevice currentDevice] orientation]
-
     UIInterfaceOrientation orientation = [UIApplication sharedApplication].statusBarOrientation;
     if (UIInterfaceOrientationIsPortrait(orientation))
     {
         self.currentPage = (int)(scrollView.contentOffset.x / kScreenWidth);
+        [self showFunctionLayer:YES];
     }
+}
+
+// 操作触发：滚动开始的时候隐藏前景功能
+- (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView
+{
+    [self showFunctionLayer:NO];
 }
 
 // 操作触发：点击按钮后进行切换
