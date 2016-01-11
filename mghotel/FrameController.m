@@ -35,6 +35,8 @@
 {
     [super viewDidLoad];
     
+    self.locationName = @"三亚・三亚湾";
+    
     // 默认初始化除了主容器以外的层都隐藏
     self.mainFrame.hidden = NO;
     self.fliterFrame.hidden = YES;
@@ -130,6 +132,13 @@
 {
     if (notification.object != nil && [notification.object isKindOfClass:[NSString class]])
         self.locationName = (NSString *)notification.object;
+}
+
+- (void)setLocationName:(NSString *)locationName
+{
+    if ([_locationName isEqualToString:locationName])
+        return;
+    _locationName = locationName;
     self.mainController.navigationItem.title = self.locationName;
 }
 

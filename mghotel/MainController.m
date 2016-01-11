@@ -15,6 +15,7 @@
 @property (strong, nonatomic) IBOutlet UIImageView *worldImage;
 @property (strong, nonatomic) IBOutlet UIView *worldLayer;
 @property (strong, nonatomic) IBOutlet UILabel *allInOne;
+@property (strong, nonatomic) IBOutlet UIButton *switchMap;
 @property (strong, nonatomic) IBOutlet NSLayoutConstraint *worldImageHeight;
 @property (strong, nonatomic) IBOutlet NSLayoutConstraint *worldImageWidth;
 
@@ -36,6 +37,7 @@
     CGAffineTransform trans = CGAffineTransformIdentity;
     trans = CGAffineTransformRotate(trans, -M_PI / 9);
     self.allInOne.transform = trans;
+    self.switchMap.layer.cornerRadius = 32.0f;
     
     // 计算滚动视图
     [self resizeScrollView:CGSizeMake(kScreenWidth, kScreenHeight)];
@@ -58,6 +60,14 @@
     UITapGestureRecognizer *tapList = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(screenTapped:)];
     [self.funcNavigationView addGestureRecognizer:tapList];
     
+    // Setup Swip Gesture, both right & left
+    UISwipeGestureRecognizer *right = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(handlerSwipeGesture:)];
+    right.direction = UISwipeGestureRecognizerDirectionLeft;
+    [self.funcNavigationView addGestureRecognizer:right];
+    UISwipeGestureRecognizer *left = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(handlerSwipeGesture:)];
+    left.direction = UISwipeGestureRecognizerDirectionRight;
+    [self.funcNavigationView addGestureRecognizer:left];
+
     // 添加滚动视图功能层
     self.funcReservationView = [FuncReservationView setupReservationView];
     [self.scrollBackground addSubview:self.funcReservationView];
@@ -247,7 +257,9 @@
     
     if (_layerMode == layerMode)
         return;
+    
     _layerMode = layerMode;
+    self.switchMap.hidden = layerMode;
     self.worldLayer.hidden = layerMode;
     // 前景层模式切换时，showFunctionLayer动画跟随执行
     self.showFunctionLayer = layerMode;
@@ -302,15 +314,28 @@
     }
 }
 
+// 进入用户中心设置
 - (IBAction)showSettings:(id)sender
 {
     [[NSNotificationCenter defaultCenter] postNotificationName:NotiShowSettings object:sender];
+}
+
+// 进入地图导航模式
+- (IBAction)switchMap:(id)sender
+{
+    [self performSegueWithIdentifier:@"switchMap" sender:sender];
 }
 
 // 屏幕单点
 - (void)screenTapped:(UIGestureRecognizer *)sender
 {
     self.layerMode = !self.layerMode;
+}
+
+// 快速侧滑事件处理
+- (void)handlerSwipeGesture:(UISwipeGestureRecognizer *)gesture
+{
+    self.currentPage = self.currentPage + ((gesture.direction == UISwipeGestureRecognizerDirectionLeft) ? 1 : -1);
 }
 
 #pragma mark - Navigation
