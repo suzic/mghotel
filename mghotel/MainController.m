@@ -220,7 +220,8 @@
             self.funcNavigationView.alpha = 0;
             self.funcServicenView.alpha = 0;
         } completion:^(BOOL finished) {
-            if (finished == YES)
+            // 补充：由于可能连续多次调用显隐效果，动画最后可能显隐又发生改变。此处要确保layerMode下最终不会隐藏前景功能涂层。
+            if (finished == YES && !_layerMode)
             {
                 self.funcReservationView.hidden = YES;
                 self.funcNavigationView.hidden = YES;
