@@ -13,7 +13,8 @@
 @property (strong, nonatomic) IBOutlet UIScrollView *scrollBackground;
 @property (strong, nonatomic) IBOutlet UIView *bottomView;
 @property (strong, nonatomic) IBOutlet UIImageView *worldImage;
-@property (strong, nonatomic) IBOutlet UIImageView *worldLayer;
+@property (strong, nonatomic) IBOutlet UIView *worldLayer;
+@property (strong, nonatomic) IBOutlet UILabel *allInOne;
 @property (strong, nonatomic) IBOutlet NSLayoutConstraint *worldImageHeight;
 @property (strong, nonatomic) IBOutlet NSLayoutConstraint *worldImageWidth;
 
@@ -30,6 +31,11 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    self.allInOne.layer.cornerRadius = 8.0f;
+    CGAffineTransform trans = CGAffineTransformIdentity;
+    trans = CGAffineTransformRotate(trans, -M_PI / 9);
+    self.allInOne.transform = trans;
     
     // 计算滚动视图
     [self resizeScrollView:CGSizeMake(kScreenWidth, kScreenHeight)];
@@ -294,6 +300,11 @@
         self.layerMode = YES;
         self.currentPage = sender.view.tag;
     }
+}
+
+- (IBAction)showSettings:(id)sender
+{
+    [[NSNotificationCenter defaultCenter] postNotificationName:NotiShowSettings object:sender];
 }
 
 // 屏幕单点

@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		D04AA2D31C43895C0076F777 /* Libian.ttc in Resources */ = {isa = PBXBuildFile; fileRef = D04AA2D21C43895C0076F777 /* Libian.ttc */; };
+		D04AA2D61C4393E60076F777 /* LocationCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D04AA2D51C4393E60076F777 /* LocationCell.m */; };
+		D04AA2DB1C43A07B0076F777 /* SettingCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D04AA2DA1C43A07B0076F777 /* SettingCell.m */; };
 		D057891F1C3CE16F0051E1A0 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = D057891E1C3CE16F0051E1A0 /* main.m */; };
 		D05789221C3CE16F0051E1A0 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = D05789211C3CE16F0051E1A0 /* AppDelegate.m */; };
 		D057892B1C3CE16F0051E1A0 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D05789291C3CE16F0051E1A0 /* Main.storyboard */; };
@@ -43,6 +46,11 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		D04AA2D21C43895C0076F777 /* Libian.ttc */ = {isa = PBXFileReference; lastKnownFileType = file; path = Libian.ttc; sourceTree = "<group>"; };
+		D04AA2D41C4393E60076F777 /* LocationCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocationCell.h; sourceTree = "<group>"; };
+		D04AA2D51C4393E60076F777 /* LocationCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocationCell.m; sourceTree = "<group>"; };
+		D04AA2D91C43A07B0076F777 /* SettingCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingCell.h; sourceTree = "<group>"; };
+		D04AA2DA1C43A07B0076F777 /* SettingCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingCell.m; sourceTree = "<group>"; };
 		D057891A1C3CE16F0051E1A0 /* mghotel.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = mghotel.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D057891E1C3CE16F0051E1A0 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		D05789201C3CE16F0051E1A0 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -101,6 +109,30 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		D04AA2D71C4393F20076F777 /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				D067059B1C3F803D0075CBE8 /* SettingsController.h */,
+				D067059C1C3F803D0075CBE8 /* SettingsController.m */,
+				D04AA2D41C4393E60076F777 /* LocationCell.h */,
+				D04AA2D51C4393E60076F777 /* LocationCell.m */,
+				D04AA2D91C43A07B0076F777 /* SettingCell.h */,
+				D04AA2DA1C43A07B0076F777 /* SettingCell.m */,
+			);
+			name = Settings;
+			sourceTree = "<group>";
+		};
+		D04AA2D81C4394080076F777 /* POIList */ = {
+			isa = PBXGroup;
+			children = (
+				D0A4C6721C423F85000BD4B1 /* POIViewController.h */,
+				D0A4C6731C423F85000BD4B1 /* POIViewController.m */,
+				D0A4C6771C42916C000BD4B1 /* POICell.h */,
+				D0A4C6781C42916C000BD4B1 /* POICell.m */,
+			);
+			name = POIList;
+			sourceTree = "<group>";
+		};
 		D05789111C3CE16F0051E1A0 = {
 			isa = PBXGroup;
 			children = (
@@ -124,20 +156,16 @@
 		D057891C1C3CE16F0051E1A0 /* mghotel */ = {
 			isa = PBXGroup;
 			children = (
-				D08934A11C4228B800BF5748 /* FrontLayer */,
 				D05789291C3CE16F0051E1A0 /* Main.storyboard */,
+				D08934A11C4228B800BF5748 /* FrontLayer */,
+				D04AA2D71C4393F20076F777 /* Settings */,
+				D04AA2D81C4394080076F777 /* POIList */,
 				D05789201C3CE16F0051E1A0 /* AppDelegate.h */,
 				D05789211C3CE16F0051E1A0 /* AppDelegate.m */,
 				D06705A21C3F90A90075CBE8 /* FrameController.h */,
 				D06705A31C3F90A90075CBE8 /* FrameController.m */,
-				D067059B1C3F803D0075CBE8 /* SettingsController.h */,
-				D067059C1C3F803D0075CBE8 /* SettingsController.m */,
 				D067059E1C3F87810075CBE8 /* MainController.h */,
 				D067059F1C3F87810075CBE8 /* MainController.m */,
-				D0A4C6721C423F85000BD4B1 /* POIViewController.h */,
-				D0A4C6731C423F85000BD4B1 /* POIViewController.m */,
-				D0A4C6771C42916C000BD4B1 /* POICell.h */,
-				D0A4C6781C42916C000BD4B1 /* POICell.m */,
 				D057892C1C3CE16F0051E1A0 /* Assets.xcassets */,
 				D0A4C6751C428FC7000BD4B1 /* Resource.xcassets */,
 				D057891D1C3CE16F0051E1A0 /* Supporting Files */,
@@ -148,6 +176,7 @@
 		D057891D1C3CE16F0051E1A0 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				D04AA2D21C43895C0076F777 /* Libian.ttc */,
 				D057892E1C3CE16F0051E1A0 /* LaunchScreen.storyboard */,
 				D05789311C3CE16F0051E1A0 /* Info.plist */,
 				D057891E1C3CE16F0051E1A0 /* main.m */,
@@ -290,6 +319,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D04AA2D31C43895C0076F777 /* Libian.ttc in Resources */,
 				D05789301C3CE16F0051E1A0 /* LaunchScreen.storyboard in Resources */,
 				D057892D1C3CE16F0051E1A0 /* Assets.xcassets in Resources */,
 				D089349D1C4203DF00BF5748 /* FunctionViews.xib in Resources */,
@@ -321,11 +351,13 @@
 			files = (
 				D06705A01C3F87810075CBE8 /* MainController.m in Sources */,
 				D08934A01C42048A00BF5748 /* FuncReservationView.m in Sources */,
+				D04AA2D61C4393E60076F777 /* LocationCell.m in Sources */,
 				D067059D1C3F803D0075CBE8 /* SettingsController.m in Sources */,
 				D06705A41C3F90A90075CBE8 /* FrameController.m in Sources */,
 				D0A4C6791C42916C000BD4B1 /* POICell.m in Sources */,
 				D0A4C67C1C42AC56000BD4B1 /* FuncServiceView.m in Sources */,
 				D05789221C3CE16F0051E1A0 /* AppDelegate.m in Sources */,
+				D04AA2DB1C43A07B0076F777 /* SettingCell.m in Sources */,
 				D0A4C6741C423F85000BD4B1 /* POIViewController.m in Sources */,
 				D057891F1C3CE16F0051E1A0 /* main.m in Sources */,
 			);

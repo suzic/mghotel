@@ -11,5 +11,6 @@
 @interface SettingsController : UIViewController <UITableViewDataSource, UITableViewDelegate>
 
 @property (strong, nonatomic) IBOutlet UITableView *settingTable;
+@property (strong, nonatomic) NSString *selectedLocationName;
 
 @end

@@ -10,4 +10,6 @@
 
 @interface FrameController : UIViewController
 
+@property (strong, nonatomic) NSString *locationName;
+
 @end

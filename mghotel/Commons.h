@@ -12,4 +12,9 @@
 #define kScreenWidth ([UIScreen mainScreen].bounds.size.width)
 #define kScreenHeight ([UIScreen mainScreen].bounds.size.height)
 
+// Notification flags
+#define NotiShowSettings        @"NotiShowSettings"
+#define NotiBackToMain          @"NotiBackToMain"
+#define NotiLocationChanged     @"NotiLocationChanged"
+
 #endif /* Commons_h */

@@ -7,8 +7,12 @@
 //
 
 #import "SettingsController.h"
+#import "LocationCell.h"
+#import "SettingCell.h"
 
 @interface SettingsController ()
+
+@property (retain, nonatomic) LocationCell *lastCell;
 
 @end
 
@@ -24,6 +28,14 @@
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (void)setSelectedLocationName:(NSString *)selectedLocationName
+{
+    if ([_selectedLocationName isEqualToString:selectedLocationName])
+        return;
+    _selectedLocationName = selectedLocationName;
+    [self.settingTable reloadData];
 }
 
 #pragma mark - UITableView Datasource & Delegate
@@ -51,7 +63,75 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return [tableView dequeueReusableCellWithIdentifier:@"settingCell"];
+    switch (indexPath.section)
+    {
+        case 0:
+        {
+            SettingCell *cell = (SettingCell *)[tableView dequeueReusableCellWithIdentifier:@"settingCell"];
+            switch (indexPath.row)
+            {
+                case 0:
+                    cell.settingName.text = @"用户信息";
+                    break;
+                case 1:
+                    cell.settingName.text = @"我的卡券";
+                    break;
+                case 2:
+                    cell.settingName.text = @"消息中心";
+                    break;
+            }
+            return cell;
+        }
+            
+        case 1:
+        {
+            LocationCell* cell = (LocationCell *)[tableView dequeueReusableCellWithIdentifier:@"locationCell"];
+            cell.accessoryType = UITableViewCellAccessoryNone;
+            switch (indexPath.row)
+            {
+                case 0:
+                    cell.locationName.text = @"三亚・三亚湾";
+                    break;
+                case 1:
+                    cell.locationName.text = @"三亚・亚龙湾";
+                    break;
+                case 2:
+                    cell.locationName.text = @"三亚・海棠湾";
+                    break;
+                case 3:
+                    cell.locationName.text = @"青岛・灵山湾";
+                    break;
+            }
+            if ([cell.locationName.text isEqualToString:self.selectedLocationName])
+                cell.accessoryType = UITableViewCellAccessoryCheckmark;
+            return cell;
+        }
+            
+        default:
+        {
+            SettingCell *cell = (SettingCell *)[tableView dequeueReusableCellWithIdentifier:@"settingCell"];
+            cell.settingName.text = @"设置";
+            return cell;
+        }
+    }
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    if (indexPath.section == 1)
+    {
+        LocationCell *cell = [tableView cellForRowAtIndexPath:indexPath];
+        if (cell != self.lastCell)
+        {
+            if (self.lastCell != nil)
+                self.lastCell.accessoryType = UITableViewCellAccessoryNone;
+            cell.accessoryType = UITableViewCellAccessoryCheckmark;
+            self.lastCell = cell;
+            self.selectedLocationName = cell.locationName.text;
+            [[NSNotificationCenter defaultCenter] postNotificationName:NotiLocationChanged object:self.selectedLocationName];
+        }
+    }
 }
 
 /*
