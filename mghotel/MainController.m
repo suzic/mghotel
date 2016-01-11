@@ -16,7 +16,10 @@
 @property (strong, nonatomic) IBOutlet NSLayoutConstraint *worldImageHeight;
 @property (strong, nonatomic) IBOutlet NSLayoutConstraint *worldImageWidth;
 
-@property (assign, nonatomic) NSInteger currentPage;
+@property (assign, nonatomic) NSInteger currentPage;    // 当前水平索引位置
+@property (assign, nonatomic) BOOL showFunctionLayer;   // 控制显示功能层。该属性提供了一种切换显示的淡入淡出效果，但受layerMode影响
+@property (assign, nonatomic) BOOL layerMode;           // 是否处于功能层显示模式。如果该属性为NO，showFunctionLayer属性无效
+@property (assign, nonatomic) BOOL inPortraitMode;      // 是否处于竖屏显示模式。非竖屏显示模式将强制layerMode为NO
 
 @end
 
@@ -56,6 +59,8 @@
 
     // 设置页面索引在变动的时候会执行一次初始化，故特意先设置NSNotFound值以后再置为0
     _currentPage = NSNotFound;
+    self.inPortraitMode = YES;
+    self.layerMode = YES;
     self.currentPage = 0;
 }
 
@@ -87,10 +92,12 @@
         
         [self.funcReservationView setFrame:CGRectMake(0, 0, kScreenWidth, self.scrollBackground.frame.size.height)];
         [self.funcServicenView setFrame:CGRectMake(kScreenWidth * 2, 0, kScreenWidth, self.scrollBackground.frame.size.height)];
+        self.inPortraitMode = YES;
         self.showFunctionLayer = YES;
     }
     else
     {
+        self.inPortraitMode = NO;
         self.showFunctionLayer = NO;
     }
 }
@@ -145,38 +152,46 @@
 // 切换文字动画。由于该过程中会重新定义文字大小，会触发Layout事件
 - (void)switchToButton:(NSInteger)index
 {
+    if (index == NSNotFound)
+        return;
+    
     [self.funcReservation setTextColor:[UIColor darkGrayColor]];
     [self.funcNavigation setTextColor:[UIColor darkGrayColor]];
     [self.funcService setTextColor:[UIColor darkGrayColor]];
     
+    [self.funcReservation setFont:[UIFont systemFontOfSize:15.0f]];
+    [self.funcNavigation setFont:[UIFont systemFontOfSize:15.0f]];
+    [self.funcService setFont:[UIFont systemFontOfSize:15.0f]];
+
     self.showFunctionLayer = NO;
     
-    switch (index)
+    if (_layerMode)
     {
-        case 0:
-            [self.funcReservation setTextColor:[UIColor blackColor]];
-            [self.funcReservation setFont:[UIFont systemFontOfSize:20.0f]];
-            [self.funcNavigation setFont:[UIFont systemFontOfSize:15.0f]];
-            [self.funcService setFont:[UIFont systemFontOfSize:15.0f]];
-            break;
-        case 1:
-            [self.funcNavigation setTextColor:[UIColor blackColor]];
-            [self.funcReservation setFont:[UIFont systemFontOfSize:15.0f]];
-            [self.funcNavigation setFont:[UIFont systemFontOfSize:20.0f]];
-            [self.funcService setFont:[UIFont systemFontOfSize:15.0f]];
-            break;
-        case 2:
-            [self.funcService setTextColor:[UIColor blackColor]];
-            [self.funcReservation setFont:[UIFont systemFontOfSize:15.0f]];
-            [self.funcNavigation setFont:[UIFont systemFontOfSize:15.0f]];
-            [self.funcService setFont:[UIFont systemFontOfSize:20.0f]];
-            break;
+        switch (index)
+        {
+            case 0:
+                [self.funcReservation setTextColor:[UIColor blackColor]];
+                [self.funcReservation setFont:[UIFont systemFontOfSize:20.0f]];
+                break;
+            case 1:
+                [self.funcNavigation setTextColor:[UIColor blackColor]];
+                [self.funcNavigation setFont:[UIFont systemFontOfSize:20.0f]];
+                break;
+            case 2:
+                [self.funcService setTextColor:[UIColor blackColor]];
+                [self.funcService setFont:[UIFont systemFontOfSize:20.0f]];
+                break;
+        }
     }
 }
 
 // 对前景功能层显示隐藏的控制
 - (void)setShowFunctionLayer:(BOOL)showFunctionLayer
 {
+    // 显示动画会收到layerMode的限制
+    if (_layerMode == NO)
+        showFunctionLayer = NO;;
+
     if (_showFunctionLayer == showFunctionLayer)
         return;
     
@@ -215,6 +230,32 @@
     }
 }
 
+// 前景层模式定义
+- (void)setLayerMode:(BOOL)layerMode
+{
+    // 前景层模式会受到横竖屏的限制
+    if (_inPortraitMode == NO)
+        layerMode = NO;
+    
+    if (_layerMode == layerMode)
+        return;
+    _layerMode = layerMode;
+    // 前景层模式切换时，showFunctionLayer动画跟随执行
+    self.showFunctionLayer = layerMode;
+    // 前景层模式切换会影响到底部按钮的缩放效果
+    [self switchToButton:self.currentPage];
+}
+
+// 横竖屏的模式属性变化
+- (void)setInPortraitMode:(BOOL)inPortraitMode
+{
+    if (_inPortraitMode == inPortraitMode)
+        return;
+    _inPortraitMode = inPortraitMode;
+    if (inPortraitMode == NO)
+        self.layerMode = NO;
+}
+
 #pragma mark - UIScrollView delegate
 
 // 操作触发：滚动结束的时候进行切换
@@ -239,13 +280,23 @@
 // 操作触发：点击按钮后进行切换
 - (void)funcPressed:(UIGestureRecognizer *)sender
 {
-    self.currentPage = sender.view.tag;
+    // 选择相同的标签视同切换层显示模式
+    if (self.currentPage == sender.view.tag)
+    {
+        self.layerMode = !self.layerMode;
+    }
+    // 选择不同的标签视同一定进入显示功能层模式
+    else
+    {
+        self.layerMode = YES;
+        self.currentPage = sender.view.tag;
+    }
 }
 
 // 屏幕单点
 - (void)screenTapped:(UIGestureRecognizer *)sender
 {
-    self.showFunctionLayer = !self.showFunctionLayer;
+    self.layerMode = !self.layerMode;
 }
 
 #pragma mark - Navigation
