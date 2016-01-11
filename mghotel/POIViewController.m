@@ -13,9 +13,7 @@
 @property (strong, nonatomic) IBOutlet UIView *categoryService;
 @property (strong, nonatomic) IBOutlet UIView *categoryShop;
 @property (strong, nonatomic) IBOutlet UIView *categoryRestaurant;
-@property (strong, nonatomic) IBOutlet UIView *mapEntrance;
-@property (strong, nonatomic) IBOutlet UIButton *mapButton;
-@property (strong, nonatomic) IBOutlet UIView *mapIcon;
+@property (strong, nonatomic) IBOutlet UIView *nearestPoint;
 
 @property (strong, nonatomic) IBOutlet UIView *gradientView;
 @property (strong, nonatomic) CAGradientLayer *gradientLayer;
@@ -32,7 +30,7 @@
     self.categoryService.layer.cornerRadius = 6.0f;
     self.categoryShop.layer.cornerRadius = 6.0f;
     self.categoryRestaurant.layer.cornerRadius = 6.0f;
-    self.mapIcon.layer.cornerRadius = 32.0f;
+    self.nearestPoint.layer.cornerRadius = 6.0f;
     
     // 对表格进行尾部渐变消隐处理
     self.gradientLayer = [CAGradientLayer layer];

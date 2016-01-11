@@ -13,6 +13,7 @@
 @property (strong, nonatomic) IBOutlet UIScrollView *scrollBackground;
 @property (strong, nonatomic) IBOutlet UIView *bottomView;
 @property (strong, nonatomic) IBOutlet UIImageView *worldImage;
+@property (strong, nonatomic) IBOutlet UIImageView *worldLayer;
 @property (strong, nonatomic) IBOutlet NSLayoutConstraint *worldImageHeight;
 @property (strong, nonatomic) IBOutlet NSLayoutConstraint *worldImageWidth;
 
@@ -241,6 +242,7 @@
     if (_layerMode == layerMode)
         return;
     _layerMode = layerMode;
+    self.worldLayer.hidden = layerMode;
     // 前景层模式切换时，showFunctionLayer动画跟随执行
     self.showFunctionLayer = layerMode;
     // 前景层模式切换会影响到底部按钮的缩放效果
