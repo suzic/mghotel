@@ -18,6 +18,8 @@
 @property (strong, nonatomic) IBOutlet UIButton *switchMap;
 @property (strong, nonatomic) IBOutlet NSLayoutConstraint *worldImageHeight;
 @property (strong, nonatomic) IBOutlet NSLayoutConstraint *worldImageWidth;
+@property (strong, nonatomic) IBOutlet NSLayoutConstraint *funcNavigationFront;
+@property (strong, nonatomic) IBOutlet NSLayoutConstraint *funcNavigationWidth;
 
 @property (assign, nonatomic) NSInteger currentPage;    // 当前水平索引位置
 @property (assign, nonatomic) BOOL showFunctionLayer;   // 控制显示功能层。该属性提供了一种切换显示的淡入淡出效果，但受layerMode影响
@@ -41,10 +43,6 @@
     
     // 计算滚动视图
     [self resizeScrollView:CGSizeMake(kScreenWidth, kScreenHeight)];
-    
-    // 图层调整
-    [self.view bringSubviewToFront:self.funcNavigationView];
-    [self.view bringSubviewToFront:self.bottomView];
 
     // 对底部栏进行操作事件注册
     UITapGestureRecognizer *tapReservation = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(funcPressed:)];
@@ -57,22 +55,13 @@
     // 对滚动视图增加一个点击手势
     UITapGestureRecognizer *tapScreen = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(screenTapped:)];
     [self.scrollBackground addGestureRecognizer:tapScreen];
-    UITapGestureRecognizer *tapList = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(screenTapped:)];
-    [self.funcNavigationView addGestureRecognizer:tapList];
-    
-    // Setup Swip Gesture, both right & left
-    UISwipeGestureRecognizer *right = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(handlerSwipeGesture:)];
-    right.direction = UISwipeGestureRecognizerDirectionLeft;
-    [self.funcNavigationView addGestureRecognizer:right];
-    UISwipeGestureRecognizer *left = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(handlerSwipeGesture:)];
-    left.direction = UISwipeGestureRecognizerDirectionRight;
-    [self.funcNavigationView addGestureRecognizer:left];
 
     // 添加滚动视图功能层
     self.funcReservationView = [FuncReservationView setupReservationView];
     [self.scrollBackground addSubview:self.funcReservationView];
     self.funcServicenView = [FuncServiceView setupServiceView];
     [self.scrollBackground addSubview:self.funcServicenView];
+    [self.scrollBackground bringSubviewToFront:self.funcNavigationView];
 
     // 设置页面索引在变动的时候会执行一次初始化，故特意先设置NSNotFound值以后再置为0
     _currentPage = NSNotFound;
@@ -109,6 +98,9 @@
         
         [self.funcReservationView setFrame:CGRectMake(0, 0, kScreenWidth, self.scrollBackground.frame.size.height)];
         [self.funcServicenView setFrame:CGRectMake(kScreenWidth * 2, 0, kScreenWidth, self.scrollBackground.frame.size.height)];
+        self.funcNavigationFront.constant = kScreenWidth;
+        self.funcNavigationWidth.constant = kScreenWidth;
+
         self.inPortraitMode = YES;
         self.showFunctionLayer = YES;
     }
@@ -216,21 +208,21 @@
     if (_showFunctionLayer)
     {
         self.funcReservationView.hidden = NO;
-        self.funcNavigationView.hidden = self.currentPage == 1 ? NO : YES;
+        self.funcNavigationView.hidden = NO;
         self.funcServicenView.hidden = NO;
         self.funcReservationView.alpha = 0;
         self.funcNavigationView.alpha = 0;
         self.funcServicenView.alpha = 0;
         [UIView animateWithDuration:0.5 animations:^{
             self.funcReservationView.alpha = 1;
-            self.funcNavigationView.alpha = self.currentPage == 1 ? 1 : 0;
+            self.funcNavigationView.alpha = 1;
             self.funcServicenView.alpha = 1;
         }];
     }
     else
     {
         self.funcReservationView.alpha = 1;
-        self.funcNavigationView.alpha = self.currentPage == 1 ? 1 : 0;;
+        self.funcNavigationView.alpha = 1;
         self.funcServicenView.alpha = 1;
         [UIView animateWithDuration:0.5 animations:^{
             self.funcReservationView.alpha = 0;
@@ -330,12 +322,6 @@
 - (void)screenTapped:(UIGestureRecognizer *)sender
 {
     self.layerMode = !self.layerMode;
-}
-
-// 快速侧滑事件处理
-- (void)handlerSwipeGesture:(UISwipeGestureRecognizer *)gesture
-{
-    self.currentPage = self.currentPage + ((gesture.direction == UISwipeGestureRecognizerDirectionLeft) ? 1 : -1);
 }
 
 #pragma mark - Navigation
