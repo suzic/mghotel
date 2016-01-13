@@ -80,7 +80,7 @@
         self.regionRequire.hidden = YES;
         self.regionRequireTop.constant = 45;
         self.regionConfirm.hidden = !confirm;
-        [self.startText setTitle:@"(移动地图设置您的起点)" forState:UIControlStateNormal];
+        [self.startText setTitle:@"(设置您的起点)" forState:UIControlStateNormal];
     }
     else
     {
@@ -89,7 +89,7 @@
         self.regionRequire.hidden = NO;
         self.regionRequireTop.constant = 0;
         self.regionConfirm.hidden = !confirm;
-        [self.startText setTitle:@"(移动地图设置您所在位置)" forState:UIControlStateNormal];
+        [self.startText setTitle:@"(设置您的位置)" forState:UIControlStateNormal];
     }
 }
 
@@ -128,7 +128,7 @@
         [self.submitPrompt setText:@"步行约500米，大约需要5分钟。"];
     }
     else
-        [self.endText setTitle:@"(点这里选择您的目的地)" forState:UIControlStateNormal];
+        [self.endText setTitle:@"(设置您的目的地)" forState:UIControlStateNormal];
 }
 
 - (IBAction)chooseRequire:(id)sender

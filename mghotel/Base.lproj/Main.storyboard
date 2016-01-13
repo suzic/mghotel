@@ -454,7 +454,7 @@
                     </view>
                     <toolbarItems/>
                     <navigationItem key="navigationItem" title="红树林管家" id="mqg-Vb-vxD">
-                        <barButtonItem key="backBarButtonItem" title="主页" id="8Nw-7U-VxU"/>
+                        <barButtonItem key="backBarButtonItem" title=" " id="8Nw-7U-VxU"/>
                         <barButtonItem key="leftBarButtonItem" systemItem="reply" id="LIC-dB-gWZ">
                             <connections>
                                 <action selector="showSettings:" destination="F5X-Vq-jW3" id="mlu-ht-t74"/>
@@ -481,7 +481,7 @@
             </objects>
             <point key="canvasLocation" x="1600" y="800"/>
         </scene>
-        <!--地图导航服务-->
+        <!--Map Service Controller-->
         <scene sceneID="Rcd-gw-Fmm">
             <objects>
                 <viewController automaticallyAdjustsScrollViewInsets="NO" id="oOg-om-VKS" customClass="MapServiceController" sceneMemberID="viewController">
@@ -496,7 +496,7 @@
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YJf-h5-SZg">
                                 <rect key="frame" x="0.0" y="64" width="600" height="536"/>
                                 <subviews>
-                                    <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="MapDemo" translatesAutoresizingMaskIntoConstraints="NO" id="p1b-A0-Z1q">
+                                    <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="MapDemo03" translatesAutoresizingMaskIntoConstraints="NO" id="p1b-A0-Z1q">
                                         <rect key="frame" x="0.0" y="0.0" width="1200" height="800"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="1200" id="XeX-WF-JvT"/>
@@ -533,29 +533,6 @@
                                     <constraint firstAttribute="width" constant="48" id="s7n-wf-lPm"/>
                                 </constraints>
                             </view>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="EmY-Uw-d6i" userLabel="Category">
-                                <rect key="frame" x="0.0" y="64" width="600" height="44"/>
-                                <subviews>
-                                    <segmentedControl opaque="NO" contentMode="scaleToFill" selected="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="Cex-zx-4pq">
-                                        <rect key="frame" x="20" y="8" width="560" height="29"/>
-                                        <segments>
-                                            <segment title="路线导航"/>
-                                            <segment title="呼叫服务"/>
-                                        </segments>
-                                        <color key="tintColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
-                                        <connections>
-                                            <action selector="functionModeChanged:" destination="oOg-om-VKS" eventType="valueChanged" id="UcK-qA-o7c"/>
-                                        </connections>
-                                    </segmentedControl>
-                                </subviews>
-                                <color key="backgroundColor" white="1" alpha="0.69999999999999996" colorSpace="calibratedWhite"/>
-                                <constraints>
-                                    <constraint firstAttribute="trailing" secondItem="Cex-zx-4pq" secondAttribute="trailing" constant="20" id="7Mn-4q-trq"/>
-                                    <constraint firstAttribute="height" constant="44" id="8il-PM-ePa"/>
-                                    <constraint firstItem="Cex-zx-4pq" firstAttribute="centerY" secondItem="EmY-Uw-d6i" secondAttribute="centerY" id="F9n-fB-Dsy"/>
-                                    <constraint firstItem="Cex-zx-4pq" firstAttribute="leading" secondItem="EmY-Uw-d6i" secondAttribute="leading" constant="20" id="q7F-1V-aef"/>
-                                </constraints>
-                            </view>
                             <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6HF-ma-2KK">
                                 <rect key="frame" x="20" y="290" width="560" height="300"/>
                                 <subviews>
@@ -572,7 +549,7 @@
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kWX-48-i4G">
                                                 <rect key="frame" x="0.0" y="0.0" width="562" height="45"/>
                                                 <inset key="contentEdgeInsets" minX="40" minY="0.0" maxX="0.0" maxY="0.0"/>
-                                                <state key="normal" title="(通过移动地图更新您的起点)">
+                                                <state key="normal" title="(设置您的起点)">
                                                     <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                                 </state>
                                                 <connections>
@@ -604,7 +581,7 @@
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cQ4-SR-DJn">
                                                 <rect key="frame" x="0.0" y="0.0" width="562" height="45"/>
                                                 <inset key="contentEdgeInsets" minX="40" minY="0.0" maxX="0.0" maxY="0.0"/>
-                                                <state key="normal" title="(点这里选择您的目的地)">
+                                                <state key="normal" title="(设置您的目的地)">
                                                     <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                                 </state>
                                                 <connections>
@@ -714,15 +691,25 @@
                             <constraint firstAttribute="trailingMargin" secondItem="6HF-ma-2KK" secondAttribute="trailing" id="DSA-0O-Zv0"/>
                             <constraint firstItem="PRk-R7-sjv" firstAttribute="centerX" secondItem="rau-wz-i68" secondAttribute="centerX" id="GmP-jz-piJ"/>
                             <constraint firstItem="6HF-ma-2KK" firstAttribute="leading" secondItem="rau-wz-i68" secondAttribute="leadingMargin" id="Iqm-uQ-Q8j"/>
-                            <constraint firstItem="EmY-Uw-d6i" firstAttribute="centerX" secondItem="rau-wz-i68" secondAttribute="centerX" id="PjJ-5Z-Dbb"/>
                             <constraint firstItem="PRk-R7-sjv" firstAttribute="centerY" secondItem="rau-wz-i68" secondAttribute="centerY" id="SDU-1h-iMN"/>
-                            <constraint firstItem="EmY-Uw-d6i" firstAttribute="width" secondItem="rau-wz-i68" secondAttribute="width" id="gjT-WF-NKg"/>
                             <constraint firstItem="oPb-cq-PUZ" firstAttribute="top" secondItem="6HF-ma-2KK" secondAttribute="bottom" constant="10" id="q6r-Ib-lex"/>
-                            <constraint firstItem="EmY-Uw-d6i" firstAttribute="top" secondItem="sdo-2a-v6Y" secondAttribute="bottom" id="wd3-ae-1tX"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="地图导航服务" id="f1L-R3-vda">
+                    <navigationItem key="navigationItem" id="f1L-R3-vda">
+                        <nil key="title"/>
                         <barButtonItem key="backBarButtonItem" title="返回" id="B8d-Tz-n9y"/>
+                        <segmentedControl key="titleView" opaque="NO" contentMode="scaleToFill" selected="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" id="Cex-zx-4pq">
+                            <rect key="frame" x="20" y="8" width="525" height="29"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <segments>
+                                <segment title="路线导航"/>
+                                <segment title="呼叫服务"/>
+                            </segments>
+                            <color key="tintColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                            <connections>
+                                <action selector="functionModeChanged:" destination="oOg-om-VKS" eventType="valueChanged" id="UcK-qA-o7c"/>
+                            </connections>
+                        </segmentedControl>
                         <barButtonItem key="rightBarButtonItem" systemItem="search" id="bhz-HY-3JN">
                             <connections>
                                 <segue destination="Fup-md-IPW" kind="show" id="lTP-L2-z6a"/>
@@ -730,7 +717,6 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <outlet property="categoryView" destination="EmY-Uw-d6i" id="l9t-yH-CwD"/>
                         <outlet property="centerStartPoint" destination="PRk-R7-sjv" id="e4d-X6-Vdw"/>
                         <outlet property="endText" destination="cQ4-SR-DJn" id="mNn-Xi-CY7"/>
                         <outlet property="functionMode" destination="Cex-zx-4pq" id="SzX-89-Bhx"/>
@@ -1077,7 +1063,7 @@
         <image name="Icon_Map" width="64" height="64"/>
         <image name="Icon_To" width="64" height="64"/>
         <image name="Locale" width="32" height="32"/>
-        <image name="MapDemo" width="696" height="536"/>
+        <image name="MapDemo03" width="320" height="504"/>
         <image name="Snail_Food" width="150" height="150"/>
         <image name="WorldLayer" width="1068" height="619"/>
         <image name="WorldSimpleImage" width="1068" height="619"/>
