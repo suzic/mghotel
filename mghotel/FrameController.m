@@ -52,7 +52,7 @@
     self.layerMaskMain = [[UIView alloc] initWithFrame:self.mainFrame.frame];
     [self.mainFrame addSubview:self.layerMaskMain];
     [self.layerMaskMain setHidden:YES];
-    [self.layerMaskMain setBackgroundColor:[UIColor colorWithRed:0 green:0 blue:0 alpha:0.0]];
+    [self.layerMaskMain setBackgroundColor:[UIColor colorWithRed:1 green:1 blue:1 alpha:0.3]];
     
     UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleGesture:)];
     [self.layerMaskMain addGestureRecognizer:tapGesture];
@@ -90,10 +90,14 @@
     }
 }
 
-- (void)viewWillLayoutSubviews
+- (void)viewDidLayoutSubviews
 {
     self.settingsWidth.constant = self.view.frame.size.width - 64;
-    [super viewWillLayoutSubviews];
+    CGRect frame = self.layerMaskMain.frame;
+    [self.layerMaskMain setFrame:CGRectMake(frame.origin.x, frame.origin.y, frame.size.width, kScreenHeight)];
+
+    [super viewDidLayoutSubviews];
+    [self.view layoutSubviews];
 }
 
 - (void)showSettings:(NSNotification *)notification

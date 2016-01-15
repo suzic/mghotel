@@ -13,33 +13,64 @@
 @property (strong, nonatomic) IBOutlet UIScrollView *scrollBackground;
 @property (strong, nonatomic) IBOutlet UIView *bottomView;
 @property (strong, nonatomic) IBOutlet UIImageView *worldImage;
-@property (strong, nonatomic) IBOutlet UIView *worldLayer;
-@property (strong, nonatomic) IBOutlet UILabel *allInOne;
-@property (strong, nonatomic) IBOutlet UIButton *switchMap;
+//@property (strong, nonatomic) IBOutlet UIView *worldLayer;
+//@property (strong, nonatomic) IBOutlet UILabel *allInOne;
 @property (strong, nonatomic) IBOutlet NSLayoutConstraint *worldImageHeight;
 @property (strong, nonatomic) IBOutlet NSLayoutConstraint *worldImageWidth;
 @property (strong, nonatomic) IBOutlet NSLayoutConstraint *funcNavigationFront;
 @property (strong, nonatomic) IBOutlet NSLayoutConstraint *funcNavigationWidth;
+
+@property (strong, nonatomic) IBOutlet UISegmentedControl *functionMode;
+@property (strong, nonatomic) IBOutlet UIView *functionPanel;
+
+@property (strong, nonatomic) IBOutlet UIView *regionStart;
+@property (strong, nonatomic) IBOutlet UIView *regionEnd;
+@property (strong, nonatomic) IBOutlet UIView *regionRequire;
+@property (strong, nonatomic) IBOutlet UIView *regionConfirm;
+
+@property (strong, nonatomic) IBOutlet NSLayoutConstraint *functionPanelHeight;
+@property (strong, nonatomic) IBOutlet NSLayoutConstraint *regionRequireTop;
+@property (strong, nonatomic) IBOutlet UIButton *startText;
+@property (strong, nonatomic) IBOutlet UIButton *endText;
+@property (strong, nonatomic) IBOutlet UIButton *needText;
+@property (strong, nonatomic) IBOutlet UIButton *submitButton;
+@property (strong, nonatomic) IBOutlet UILabel *submitPrompt;
+
 
 @property (assign, nonatomic) NSInteger currentPage;    // 当前水平索引位置
 @property (assign, nonatomic) BOOL showFunctionLayer;   // 控制显示功能层。该属性提供了一种切换显示的淡入淡出效果，但受layerMode影响
 @property (assign, nonatomic) BOOL layerMode;           // 是否处于功能层显示模式。如果该属性为NO，showFunctionLayer属性无效
 @property (assign, nonatomic) BOOL inPortraitMode;      // 是否处于竖屏显示模式。非竖屏显示模式将强制layerMode为NO
 
+@property (assign, nonatomic) BOOL inShowSettings;
+
 @end
 
 @implementation MainController
+{
+    BOOL showConfirm;
+    int demoIndex;
+}
 
 // 初始化：设置默认页以及给Label加事件等等
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+
+    self.inShowSettings = NO;
     
-    self.allInOne.layer.cornerRadius = 8.0f;
-    CGAffineTransform trans = CGAffineTransformIdentity;
-    trans = CGAffineTransformRotate(trans, -M_PI / 9);
-    self.allInOne.transform = trans;
-    self.switchMap.layer.cornerRadius = 32.0f;
+    // 关于导航控件的引用
+    showConfirm = NO;
+    demoIndex = 0;
+    self.submitButton.layer.cornerRadius = 4.0f;
+    self.functionPanel.layer.cornerRadius = 4.0f;
+    self.regionStart.layer.borderColor = [UIColor lightGrayColor].CGColor;
+    self.regionStart.layer.borderWidth = 0.5f;
+    self.regionConfirm.layer.borderColor = [UIColor lightGrayColor].CGColor;
+    self.regionConfirm.layer.borderWidth = 0.5f;
+    self.functionPanel.hidden = YES;
+    self.functionMode.hidden = YES;
+    [self layoutFunctionPanelWithConfirmRow:NO];
     
     // 计算滚动视图
     [self resizeScrollView:CGSizeMake(kScreenWidth, kScreenHeight)];
@@ -68,6 +99,9 @@
     self.inPortraitMode = YES;
     self.layerMode = YES;
     self.currentPage = 0;
+
+    // 该层面上的消息接收
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(backToMain:) name:NotiBackToMain object:nil];
 }
 
 // 内存警告检查
@@ -86,8 +120,6 @@
 // 重布局
 - (void)viewDidLayoutSubviews
 {
-    [super viewDidLayoutSubviews];
-    
     // UIDevice的设备orientation的问题：对于设备而言，除了横竖屏之外还有屏幕朝上还是朝下的判断。而这里我们只要横竖屏判断。
     // 因此不要用这个 [[UIDevice currentDevice] orientation]
     UIInterfaceOrientation orientation = [UIApplication sharedApplication].statusBarOrientation;
@@ -96,8 +128,8 @@
         // 对竖屏时的滚动偏移进行复原
         [self scrollToPage:self.currentPage];
         
-        [self.funcReservationView setFrame:CGRectMake(0, 0, kScreenWidth, self.scrollBackground.frame.size.height)];
-        [self.funcServicenView setFrame:CGRectMake(kScreenWidth * 2, 0, kScreenWidth, self.scrollBackground.frame.size.height)];
+        [self.funcReservationView setFrame:CGRectMake(0, 0, kScreenWidth, kScreenHeight)];
+        [self.funcServicenView setFrame:CGRectMake(kScreenWidth * 2, 0, kScreenWidth, kScreenHeight)];
         self.funcNavigationFront.constant = kScreenWidth;
         self.funcNavigationWidth.constant = kScreenWidth;
 
@@ -109,15 +141,92 @@
         self.inPortraitMode = NO;
         self.showFunctionLayer = NO;
     }
+    
+    [super viewDidLayoutSubviews];
+    [self.view layoutSubviews];
 }
 
 // 支持旋转屏
 - (UIInterfaceOrientationMask)supportedInterfaceOrientations
 {
-    return UIInterfaceOrientationMaskAll;
+    return self.inShowSettings == YES ? UIInterfaceOrientationMaskPortrait : UIInterfaceOrientationMaskAll;
+}
+
+- (void)backToMain:(NSNotification *)notification
+{
+    self.inShowSettings = NO;
 }
 
 #pragma mark - Fucntions
+
+- (void)layoutFunctionPanelWithConfirmRow:(BOOL)confirm
+{
+    if (self.functionMode.selectedSegmentIndex == 0)
+    {
+        self.functionPanelHeight.constant = 45 * 2 - 2 + (confirm ? 88 : 0);
+        self.regionEnd.hidden = NO;
+        self.regionRequire.hidden = YES;
+        self.regionRequireTop.constant = 45;
+        self.regionConfirm.hidden = !confirm;
+        [self.startText setTitle:@"(设置您的起点)" forState:UIControlStateNormal];
+    }
+    else
+    {
+        self.functionPanelHeight.constant = 45 * 2 - 2 + (confirm ? 88 : 0);
+        self.regionEnd.hidden = YES;
+        self.regionRequire.hidden = NO;
+        self.regionRequireTop.constant = 0;
+        self.regionConfirm.hidden = !confirm;
+        [self.startText setTitle:@"(设置您的位置)" forState:UIControlStateNormal];
+    }
+}
+
+- (IBAction)startChanging:(id)sender
+{
+    // 正确的做法是这里不应当处理任何事件。但为演示，现在点击这里模拟位置变化
+    demoIndex = (++demoIndex) % 3;
+    switch (demoIndex)
+    {
+        case 0:
+            [self layoutFunctionPanelWithConfirmRow:showConfirm];
+            break;
+        case 1:
+            [self.startText setTitle:@"嗨翻水乐园" forState:UIControlStateNormal];
+            break;
+        case 2:
+            [self.startText setTitle:@"面莊会" forState:UIControlStateNormal];
+            break;
+    }
+}
+
+- (IBAction)chooseTarget:(id)sender
+{
+    // 选择终点方法。正确的做法是这里发生导航进入搜索页面。但为演示，现在点击这里直接出结果
+    showConfirm = !showConfirm;
+    [self layoutFunctionPanelWithConfirmRow:showConfirm];
+    
+    if (showConfirm)
+    {
+        [self.endText setTitle:@"一景海鲜坊" forState:UIControlStateNormal];
+        [self.submitPrompt setText:@"步行约500米，大约需要5分钟。"];
+    }
+    else
+        [self.endText setTitle:@"(设置您的目的地)" forState:UIControlStateNormal];
+}
+
+- (IBAction)chooseRequire:(id)sender
+{
+    // 选择需求的方法。正确的做法是这里发生导航进入服务选择。但为演示，现在点击这里直接出结果
+    showConfirm = !showConfirm;
+    [self layoutFunctionPanelWithConfirmRow:showConfirm];
+    if (showConfirm)
+    {
+        [self.needText setTitle:@"我需要 一杯红酒" forState:UIControlStateNormal];
+        [self.submitPrompt setText:@"需消费58元。请您原地等候服务员。"];
+    }
+    else
+        [self.needText setTitle:@"我需要……" forState:UIControlStateNormal];
+}
 
 // 视图尺寸变化后的重新布局
 - (void)resizeScrollView:(CGSize)size
@@ -125,7 +234,7 @@
     if (UIDeviceOrientationIsPortrait([[UIDevice currentDevice] orientation]))
     {
         self.worldImageWidth.constant = size.width * 3;
-        self.worldImageHeight.constant = size.height - 64;
+        self.worldImageHeight.constant = size.height;
         [self.navigationController setNavigationBarHidden:NO animated:YES];
         [self.bottomView setHidden:NO];
     }
@@ -251,8 +360,19 @@
         return;
     
     _layerMode = layerMode;
-    self.switchMap.hidden = layerMode;
-    self.worldLayer.hidden = layerMode;
+    self.functionMode.hidden = layerMode;
+    
+    self.functionPanel.alpha = layerMode ? 1 : 0;
+    self.bottomView.alpha = layerMode ? 0 : 1;
+    [UIView animateWithDuration:0.5f animations:^{
+        self.functionPanel.alpha = layerMode ? 0 : 1;
+        self.bottomView.alpha = layerMode ? 1 : 0;
+    } completion:^(BOOL finished) {
+        self.functionPanel.hidden = layerMode;
+        self.bottomView.hidden = !layerMode;
+    }];
+    
+    [self.navigationController setNavigationBarHidden:!layerMode animated:YES];
     // 前景层模式切换时，showFunctionLayer动画跟随执行
     self.showFunctionLayer = layerMode;
     // 前景层模式切换会影响到底部按钮的缩放效果
@@ -309,13 +429,8 @@
 // 进入用户中心设置
 - (IBAction)showSettings:(id)sender
 {
+    self.inShowSettings = YES;
     [[NSNotificationCenter defaultCenter] postNotificationName:NotiShowSettings object:sender];
-}
-
-// 进入地图导航模式
-- (IBAction)switchMap:(id)sender
-{
-    [self performSegueWithIdentifier:@"switchMap" sender:sender];
 }
 
 // 屏幕单点

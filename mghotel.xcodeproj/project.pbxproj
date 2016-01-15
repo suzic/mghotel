@@ -10,7 +10,6 @@
 		D04AA2D31C43895C0076F777 /* Libian.ttc in Resources */ = {isa = PBXBuildFile; fileRef = D04AA2D21C43895C0076F777 /* Libian.ttc */; };
 		D04AA2D61C4393E60076F777 /* LocationCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D04AA2D51C4393E60076F777 /* LocationCell.m */; };
 		D04AA2DB1C43A07B0076F777 /* SettingCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D04AA2DA1C43A07B0076F777 /* SettingCell.m */; };
-		D04AA2DE1C43A9290076F777 /* MapServiceController.m in Sources */ = {isa = PBXBuildFile; fileRef = D04AA2DD1C43A9290076F777 /* MapServiceController.m */; };
 		D04AA2E11C43C5520076F777 /* SearchPOIController.m in Sources */ = {isa = PBXBuildFile; fileRef = D04AA2E01C43C5520076F777 /* SearchPOIController.m */; };
 		D057891F1C3CE16F0051E1A0 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = D057891E1C3CE16F0051E1A0 /* main.m */; };
 		D05789221C3CE16F0051E1A0 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = D05789211C3CE16F0051E1A0 /* AppDelegate.m */; };
@@ -53,8 +52,6 @@
 		D04AA2D51C4393E60076F777 /* LocationCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocationCell.m; sourceTree = "<group>"; };
 		D04AA2D91C43A07B0076F777 /* SettingCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingCell.h; sourceTree = "<group>"; };
 		D04AA2DA1C43A07B0076F777 /* SettingCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingCell.m; sourceTree = "<group>"; };
-		D04AA2DC1C43A9290076F777 /* MapServiceController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapServiceController.h; sourceTree = "<group>"; };
-		D04AA2DD1C43A9290076F777 /* MapServiceController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapServiceController.m; sourceTree = "<group>"; };
 		D04AA2DF1C43C5520076F777 /* SearchPOIController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchPOIController.h; sourceTree = "<group>"; };
 		D04AA2E01C43C5520076F777 /* SearchPOIController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchPOIController.m; sourceTree = "<group>"; };
 		D057891A1C3CE16F0051E1A0 /* mghotel.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = mghotel.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -172,8 +169,6 @@
 				D06705A31C3F90A90075CBE8 /* FrameController.m */,
 				D067059E1C3F87810075CBE8 /* MainController.h */,
 				D067059F1C3F87810075CBE8 /* MainController.m */,
-				D04AA2DC1C43A9290076F777 /* MapServiceController.h */,
-				D04AA2DD1C43A9290076F777 /* MapServiceController.m */,
 				D04AA2DF1C43C5520076F777 /* SearchPOIController.h */,
 				D04AA2E01C43C5520076F777 /* SearchPOIController.m */,
 				D057892C1C3CE16F0051E1A0 /* Assets.xcassets */,
@@ -360,7 +355,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				D04AA2E11C43C5520076F777 /* SearchPOIController.m in Sources */,
-				D04AA2DE1C43A9290076F777 /* MapServiceController.m in Sources */,
 				D06705A01C3F87810075CBE8 /* MainController.m in Sources */,
 				D08934A01C42048A00BF5748 /* FuncReservationView.m in Sources */,
 				D04AA2D61C4393E60076F777 /* LocationCell.m in Sources */,

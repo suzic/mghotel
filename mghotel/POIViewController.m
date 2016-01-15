@@ -50,10 +50,11 @@
 
 - (void)viewDidLayoutSubviews
 {
-    [super viewDidLayoutSubviews];
-    
     // 适配iPad：必须在这里对覆盖层定义layout后的尺寸
     self.gradientLayer.frame = self.gradientView.bounds;
+    
+    [super viewDidLayoutSubviews];
+    [self.view layoutSubviews];
 }
 
 // 支持旋转屏
