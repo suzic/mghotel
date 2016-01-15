@@ -354,23 +354,32 @@
 {
     // 前景层模式会受到横竖屏的限制
     if (_inPortraitMode == NO)
+    {
         layerMode = NO;
+        self.functionMode.hidden = YES;
+        self.functionPanel.hidden = YES;
+        self.bottomView.hidden = YES;
+    }
+    else
+    {
+        self.functionMode.hidden = layerMode;
+        
+        self.functionPanel.alpha = layerMode ? 1 : 0;
+        self.bottomView.alpha = layerMode ? 0 : 1;
+        [UIView animateWithDuration:0.5f animations:^{
+            self.functionPanel.alpha = layerMode ? 0 : 1;
+            self.bottomView.alpha = layerMode ? 1 : 0;
+        } completion:^(BOOL finished) {
+            self.functionPanel.hidden = layerMode;
+            self.bottomView.hidden = !layerMode;
+        }];
+    }
     
     if (_layerMode == layerMode)
         return;
     
     _layerMode = layerMode;
-    self.functionMode.hidden = layerMode;
-    
-    self.functionPanel.alpha = layerMode ? 1 : 0;
-    self.bottomView.alpha = layerMode ? 0 : 1;
-    [UIView animateWithDuration:0.5f animations:^{
-        self.functionPanel.alpha = layerMode ? 0 : 1;
-        self.bottomView.alpha = layerMode ? 1 : 0;
-    } completion:^(BOOL finished) {
-        self.functionPanel.hidden = layerMode;
-        self.bottomView.hidden = !layerMode;
-    }];
+    self.scrollBackground.pagingEnabled = layerMode;
     
     [self.navigationController setNavigationBarHidden:!layerMode animated:YES];
     // 前景层模式切换时，showFunctionLayer动画跟随执行
@@ -385,8 +394,7 @@
     if (_inPortraitMode == inPortraitMode)
         return;
     _inPortraitMode = inPortraitMode;
-    if (inPortraitMode == NO)
-        self.layerMode = NO;
+    self.layerMode = inPortraitMode;
 }
 
 #pragma mark - UIScrollView delegate
