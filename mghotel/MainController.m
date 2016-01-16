@@ -364,21 +364,22 @@
         layerMode = NO;
         self.functionMode.hidden = YES;
         self.functionPanel.hidden = YES;
-        self.bottomView.hidden = YES;
+//        self.bottomView.hidden = YES;
     }
     else
     {
         self.functionMode.hidden = layerMode;
-        
-        self.functionPanel.alpha = layerMode ? 1 : 0;
-        self.bottomView.alpha = layerMode ? 0 : 1;
-        [UIView animateWithDuration:0.5f animations:^{
-            self.functionPanel.alpha = layerMode ? 0 : 1;
-            self.bottomView.alpha = layerMode ? 1 : 0;
-        } completion:^(BOOL finished) {
-            self.functionPanel.hidden = layerMode;
-            self.bottomView.hidden = !layerMode;
-        }];
+        self.functionPanel.hidden = YES;
+
+//        self.functionPanel.alpha = layerMode ? 1 : 0;
+//        self.bottomView.alpha = layerMode ? 0 : 1;
+//        [UIView animateWithDuration:0.5f animations:^{
+//            self.functionPanel.alpha = layerMode ? 0 : 1;
+//            self.bottomView.alpha = layerMode ? 1 : 0;
+//        } completion:^(BOOL finished) {
+//            self.functionPanel.hidden = layerMode;
+//            self.bottomView.hidden = !layerMode;
+//        }];
     }
     
     if (_layerMode == layerMode)
@@ -456,7 +457,7 @@
 // 屏幕单点
 - (void)screenTapped:(UIGestureRecognizer *)sender
 {
-    self.layerMode = !self.layerMode;
+    //self.layerMode = !self.layerMode;
 }
 
 #pragma mark - Navigation
