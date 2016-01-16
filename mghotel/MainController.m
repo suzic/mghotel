@@ -15,7 +15,9 @@
 @property (strong, nonatomic) IBOutlet UIImageView *worldImage;
 //@property (strong, nonatomic) IBOutlet UIView *worldLayer;
 //@property (strong, nonatomic) IBOutlet UILabel *allInOne;
+@property (strong, nonatomic) IBOutlet NSLayoutConstraint *worldImageTop;
 @property (strong, nonatomic) IBOutlet NSLayoutConstraint *worldImageHeight;
+@property (strong, nonatomic) IBOutlet NSLayoutConstraint *worldImageBottom;
 @property (strong, nonatomic) IBOutlet NSLayoutConstraint *worldImageWidth;
 @property (strong, nonatomic) IBOutlet NSLayoutConstraint *funcNavigationFront;
 @property (strong, nonatomic) IBOutlet NSLayoutConstraint *funcNavigationWidth;
@@ -233,13 +235,17 @@
 {
     if (UIDeviceOrientationIsPortrait([[UIDevice currentDevice] orientation]))
     {
+        self.worldImageTop.constant = 60;
+        self.worldImageBottom.constant = 40;
         self.worldImageWidth.constant = size.width * 3;
-        self.worldImageHeight.constant = size.height;
+        self.worldImageHeight.constant = size.height - 100;
         [self.navigationController setNavigationBarHidden:NO animated:YES];
         [self.bottomView setHidden:NO];
     }
     else if (UIDeviceOrientationIsLandscape([[UIDevice currentDevice] orientation]))
     {
+        self.worldImageTop.constant = 0;
+        self.worldImageBottom.constant = 0;
         self.worldImageWidth.constant = size.width;
         self.worldImageHeight.constant = size.height;
         [self.navigationController setNavigationBarHidden:YES animated:YES];
@@ -439,6 +445,12 @@
 {
     self.inShowSettings = YES;
     [[NSNotificationCenter defaultCenter] postNotificationName:NotiShowSettings object:sender];
+}
+
+// 点击工具栏按钮
+- (IBAction)switchBackground:(id)sender
+{
+    self.layerMode = !self.layerMode;
 }
 
 // 屏幕单点

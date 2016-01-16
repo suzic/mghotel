@@ -13,11 +13,11 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qqg-Mk-Usd">
-                    <rect key="frame" x="-8" y="84" width="400" height="50"/>
+                    <rect key="frame" x="-8" y="84" width="480" height="50"/>
                     <subviews>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" reversesTitleShadowWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Bed-LN-P2V">
-                            <rect key="frame" x="0.0" y="0.0" width="400" height="50"/>
-                            <inset key="contentEdgeInsets" minX="40" minY="0.0" maxX="0.0" maxY="0.0"/>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" buttonType="roundedRect" reversesTitleShadowWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Bed-LN-P2V">
+                            <rect key="frame" x="0.0" y="0.0" width="480" height="50"/>
+                            <inset key="contentEdgeInsets" minX="0.0" minY="0.0" maxX="40" maxY="0.0"/>
                             <state key="normal" title="精准预订">
                                 <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </state>
@@ -33,11 +33,11 @@
                     </constraints>
                 </view>
                 <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9bG-un-DaQ">
-                    <rect key="frame" x="-8" y="154" width="300" height="50"/>
+                    <rect key="frame" x="-8" y="144" width="480" height="50"/>
                     <subviews>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" reversesTitleShadowWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xFH-Pq-QKt">
-                            <rect key="frame" x="0.0" y="0.0" width="300" height="50"/>
-                            <inset key="contentEdgeInsets" minX="40" minY="0.0" maxX="0.0" maxY="0.0"/>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" buttonType="roundedRect" reversesTitleShadowWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xFH-Pq-QKt">
+                            <rect key="frame" x="0.0" y="0.0" width="480" height="50"/>
+                            <inset key="contentEdgeInsets" minX="1" minY="0.0" maxX="40" maxY="0.0"/>
                             <state key="normal" title="传统预订">
                                 <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                             </state>
@@ -53,10 +53,11 @@
                     </constraints>
                 </view>
                 <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="f25-pD-KXQ">
-                    <rect key="frame" x="128" y="420" width="480" height="50"/>
+                    <rect key="frame" x="-8" y="214" width="480" height="50"/>
                     <subviews>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" reversesTitleShadowWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Y9e-cN-dYY">
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" buttonType="roundedRect" reversesTitleShadowWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Y9e-cN-dYY">
                             <rect key="frame" x="0.0" y="0.0" width="480" height="50"/>
+                            <inset key="contentEdgeInsets" minX="0.0" minY="0.0" maxX="40" maxY="0.0"/>
                             <state key="normal" title="酒店订单中心">
                                 <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                             </state>
@@ -119,13 +120,13 @@
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.80000000000000004" colorSpace="calibratedRGB"/>
             <constraints>
                 <constraint firstItem="9bG-un-DaQ" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="-8" id="2Gg-dC-7s9"/>
-                <constraint firstItem="9bG-un-DaQ" firstAttribute="width" secondItem="iN0-l3-epB" secondAttribute="width" multiplier="1:2" id="BGC-sj-Kvh"/>
-                <constraint firstItem="qqg-Mk-Usd" firstAttribute="width" secondItem="iN0-l3-epB" secondAttribute="width" multiplier="2:3" id="EfF-Vd-tk5"/>
+                <constraint firstItem="9bG-un-DaQ" firstAttribute="width" secondItem="iN0-l3-epB" secondAttribute="width" multiplier="4:5" id="BGC-sj-Kvh"/>
+                <constraint firstItem="qqg-Mk-Usd" firstAttribute="width" secondItem="iN0-l3-epB" secondAttribute="width" multiplier="4:5" id="EfF-Vd-tk5"/>
                 <constraint firstItem="f25-pD-KXQ" firstAttribute="width" secondItem="iN0-l3-epB" secondAttribute="width" multiplier="4:5" id="IO4-Zm-wzl"/>
-                <constraint firstItem="9bG-un-DaQ" firstAttribute="top" secondItem="qqg-Mk-Usd" secondAttribute="bottom" constant="20" id="XEP-qe-ANM"/>
+                <constraint firstItem="9bG-un-DaQ" firstAttribute="top" secondItem="qqg-Mk-Usd" secondAttribute="bottom" constant="10" id="XEP-qe-ANM"/>
                 <constraint firstItem="qqg-Mk-Usd" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="-8" id="Y7W-a5-WUX"/>
-                <constraint firstAttribute="trailing" secondItem="f25-pD-KXQ" secondAttribute="trailing" constant="-8" id="eF6-f1-K7n"/>
-                <constraint firstAttribute="bottom" secondItem="f25-pD-KXQ" secondAttribute="bottom" constant="130" id="gpL-Mz-0GC"/>
+                <constraint firstItem="f25-pD-KXQ" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="-8" id="eF6-f1-K7n"/>
+                <constraint firstItem="f25-pD-KXQ" firstAttribute="top" secondItem="9bG-un-DaQ" secondAttribute="bottom" constant="20" id="gez-4h-lax"/>
                 <constraint firstItem="eiB-on-WEb" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="15" id="lt9-s6-Tmp"/>
                 <constraint firstAttribute="bottom" secondItem="eiB-on-WEb" secondAttribute="bottom" constant="50" id="sqS-hh-fFV"/>
                 <constraint firstItem="qqg-Mk-Usd" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="84" id="yJs-NW-sg3"/>
