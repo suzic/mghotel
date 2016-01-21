@@ -226,6 +226,21 @@
     }
 }
 
+- (IBAction)selectMode:(id)sender
+{
+    self.layerMode = NO;
+    if (self.functionMode.selectedSegmentIndex == 0)
+    {
+        [self.worldImage setImage:[UIImage imageNamed:@"worldlayer"]];
+        self.worldImage.contentMode = UIViewContentModeScaleAspectFit;
+    }
+    else
+    {
+        [self.worldImage setImage:[UIImage imageNamed:@"MapDemo00"]];
+        self.worldImage.contentMode = UIViewContentModeCenter;
+    }
+}
+
 - (IBAction)chooseTarget:(id)sender
 {
     // 选择终点方法。正确的做法是这里发生导航进入搜索页面。但为演示，现在点击这里直接出结果
@@ -389,22 +404,25 @@
         layerMode = NO;
         self.functionMode.hidden = YES;
         self.functionPanel.hidden = YES;
-//        self.bottomView.hidden = YES;
+        self.bottomView.hidden = (self.functionMode.selectedSegmentIndex == 0);
     }
     else
     {
         self.functionMode.hidden = layerMode;
         self.functionPanel.hidden = YES;
 
-//        self.functionPanel.alpha = layerMode ? 1 : 0;
-//        self.bottomView.alpha = layerMode ? 0 : 1;
-//        [UIView animateWithDuration:0.5f animations:^{
-//            self.functionPanel.alpha = layerMode ? 0 : 1;
-//            self.bottomView.alpha = layerMode ? 1 : 0;
-//        } completion:^(BOOL finished) {
-//            self.functionPanel.hidden = layerMode;
-//            self.bottomView.hidden = !layerMode;
-//        }];
+        if (self.functionMode.selectedSegmentIndex == 1)
+        {
+            self.functionPanel.alpha = layerMode ? 1 : 0;
+            self.bottomView.alpha = layerMode ? 0 : 1;
+            [UIView animateWithDuration:0.5f animations:^{
+                self.functionPanel.alpha = layerMode ? 0 : 1;
+                self.bottomView.alpha = layerMode ? 1 : 0;
+            } completion:^(BOOL finished) {
+                self.functionPanel.hidden = layerMode;
+                self.bottomView.hidden = !layerMode;
+            }];
+        }
     }
     
     if (_layerMode == layerMode)
