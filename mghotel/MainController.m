@@ -13,8 +13,7 @@
 @property (strong, nonatomic) IBOutlet UIScrollView *scrollBackground;
 @property (strong, nonatomic) IBOutlet UIView *bottomView;
 @property (strong, nonatomic) IBOutlet UIImageView *worldImage;
-//@property (strong, nonatomic) IBOutlet UIView *worldLayer;
-//@property (strong, nonatomic) IBOutlet UILabel *allInOne;
+@property (strong, nonatomic) IBOutlet UIView *worldLayer;
 @property (strong, nonatomic) IBOutlet NSLayoutConstraint *worldImageTop;
 @property (strong, nonatomic) IBOutlet NSLayoutConstraint *worldImageHeight;
 @property (strong, nonatomic) IBOutlet NSLayoutConstraint *worldImageBottom;
@@ -84,10 +83,6 @@
     [self.funcNavigation addGestureRecognizer:tapNavigation];
     UITapGestureRecognizer *tapService = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(funcPressed:)];
     [self.funcService addGestureRecognizer:tapService];
-    
-    // 对滚动视图增加一个点击手势
-    UITapGestureRecognizer *tapScreen = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(screenTapped:)];
-    [self.scrollBackground addGestureRecognizer:tapScreen];
 
     // 添加滚动视图功能层
     self.funcReservationView = [FuncReservationView setupReservationView];
@@ -101,6 +96,8 @@
     self.inPortraitMode = YES;
     self.layerMode = YES;
     self.currentPage = 0;
+    
+    [self setupWorldLayer];
 
     // 该层面上的消息接收
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(backToMain:) name:NotiBackToMain object:nil];
@@ -144,6 +141,8 @@
         self.showFunctionLayer = NO;
     }
     
+    [self resizeWorldLayer];
+
     [super viewDidLayoutSubviews];
     [self.view layoutSubviews];
 }
@@ -160,6 +159,32 @@
 }
 
 #pragma mark - Fucntions
+
+- (void)setupWorldLayer
+{
+    for (int index = 0; index < 13; index++)
+    {
+        CGRect focusFrame = CGRectMake(0, 0, self.worldLayer.frame.size.width, self.worldLayer.frame.size.height);
+        UIImageView *oneFocus = [[UIImageView alloc] initWithFrame:focusFrame];
+        NSString *imageName = [NSString stringWithFormat:@"wl_%d", index];
+        oneFocus.image = [UIImage imageNamed:imageName];
+        oneFocus.contentMode = UIViewContentModeScaleAspectFit;
+        [self.worldLayer addSubview:oneFocus];
+        oneFocus.hidden = YES;
+    }
+    
+    UITapGestureRecognizer *tapTarget = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(focusTarget:)];
+    [self.worldLayer addGestureRecognizer:tapTarget];
+}
+
+- (void)resizeWorldLayer
+{
+    for (UIImageView *imageView in self.worldLayer.subviews)
+    {
+        CGRect focusFrame = CGRectMake(0, 0, self.worldLayer.frame.size.width, self.worldLayer.frame.size.height);
+        [imageView setFrame:focusFrame];
+    }
+}
 
 - (void)layoutFunctionPanelWithConfirmRow:(BOOL)confirm
 {
@@ -193,7 +218,7 @@
             [self layoutFunctionPanelWithConfirmRow:showConfirm];
             break;
         case 1:
-            [self.startText setTitle:@"嗨翻水乐园" forState:UIControlStateNormal];
+            [self.startText setTitle:@"亚马逊水上乐园" forState:UIControlStateNormal];
             break;
         case 2:
             [self.startText setTitle:@"面莊会" forState:UIControlStateNormal];
@@ -314,7 +339,7 @@
 {
     // 显示动画会收到layerMode的限制
     if (_layerMode == NO)
-        showFunctionLayer = NO;;
+        showFunctionLayer = NO;
 
     if (_showFunctionLayer == showFunctionLayer)
         return;
@@ -386,6 +411,7 @@
         return;
     
     _layerMode = layerMode;
+    self.worldLayer.hidden = layerMode;
     self.scrollBackground.pagingEnabled = layerMode;
     
     [self.navigationController setNavigationBarHidden:!layerMode animated:YES];
@@ -409,6 +435,9 @@
 // 操作触发：滚动结束的时候进行切换
 - (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView
 {
+    if (_layerMode == NO)
+        return;
+    
     // UIDevice的设备orientation的问题：对于设备而言，除了横竖屏之外还有屏幕朝上还是朝下的判断。而这里我们只要横竖屏判断。
     // 因此不要用这个 [[UIDevice currentDevice] orientation]
     UIInterfaceOrientation orientation = [UIApplication sharedApplication].statusBarOrientation;
@@ -455,9 +484,35 @@
 }
 
 // 屏幕单点
-- (void)screenTapped:(UIGestureRecognizer *)sender
+- (void)focusTarget:(UIGestureRecognizer *)sender
 {
-    //self.layerMode = !self.layerMode;
+    UITapGestureRecognizer *tap = (UITapGestureRecognizer *)sender;
+    CGPoint pt = [tap locationInView:self.worldLayer];
+    
+    for (UIImageView* imageView in self.worldLayer.subviews)
+    {
+        imageView.hidden = NO;
+        if (![self point:pt insideImageView:imageView])
+            imageView.hidden = YES;
+        else
+            // 注：这里中断会造成不取消之前的选定效果。用于制作demo截图故意设置。
+            break;
+    }
+}
+
+- (BOOL)point:(CGPoint)point insideImageView:(UIImageView *)imageView
+{
+    unsigned char pixel[1] = {0};
+    CGContextRef context = CGBitmapContextCreate(pixel, 1, 1, 8, 1, NULL, kCGImageAlphaOnly);
+    UIGraphicsPushContext(context);
+    CGContextTranslateCTM(context, -point.x, -point.y);
+    [imageView.layer renderInContext:context];
+    UIGraphicsPopContext();
+    CGContextRelease(context);
+
+    CGFloat alpha = pixel[0] / 255.0f;
+    BOOL transparent = alpha < 0.1f;
+    return !transparent;
 }
 
 #pragma mark - Navigation
