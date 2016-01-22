@@ -16,6 +16,10 @@
 @property (strong, nonatomic) IBOutlet UILabel *funcNavigation;
 @property (strong, nonatomic) IBOutlet UILabel *funcService;
 
+@property (strong, nonatomic) IBOutlet UIView *filterService;
+@property (strong, nonatomic) IBOutlet UIView *filterShop;
+@property (strong, nonatomic) IBOutlet UIView *filterFood;
+
 @property (strong, nonatomic) IBOutlet UIView *funcNavigationView;
 @property (retain, nonatomic) FuncReservationView *funcReservationView;
 @property (retain, nonatomic) FuncServiceView *funcServicenView;

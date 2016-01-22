@@ -16,5 +16,6 @@
 #define NotiShowSettings        @"NotiShowSettings"
 #define NotiBackToMain          @"NotiBackToMain"
 #define NotiLocationChanged     @"NotiLocationChanged"
+#define NotiShowMap             @"NotiShowMap"
 
 #endif /* Commons_h */

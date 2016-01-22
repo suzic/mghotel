@@ -7,6 +7,7 @@
 //
 
 #import "POIViewController.h"
+#import "POICell.h"
 
 @interface POIViewController ()
 
@@ -79,7 +80,43 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return [tableView dequeueReusableCellWithIdentifier:@"POIRow"];
+    POICell *cell = [tableView dequeueReusableCellWithIdentifier:@"POIRow"];
+    switch (indexPath.section)
+    {
+        case 0:
+            cell.NameTitle.text = @"红树林招牌泰餐厅";
+            cell.Introduce.text = @"地道泰国风味美食刺激您的味蕾，带您领略咖喱的冒险！";
+            break;
+        case 1:
+            cell.NameTitle.text = @"一景海鲜坊";
+            cell.Introduce.text = @"好多好多好吃的海鲜，快来尝一尝，一道独特的风景。";
+            break;
+        case 2:
+            cell.NameTitle.text = @"面莊会";
+            cell.Introduce.text = @"民以食为天，食以面为王。最佳专业好吃的面食生产商！";
+            break;
+        case 3:
+            cell.NameTitle.text = @"亚马逊水上乐园";
+            cell.Introduce.text = @"说明文字说明文字说明文字说明文字说明文字说明文";
+            break;
+        case 4:
+            cell.NameTitle.text = @"红树林海鲜广场";
+            cell.Introduce.text = @"说明文字说明文字说明文字说明文字说明文字说明文";
+            break;
+        case 5:
+            cell.NameTitle.text = @"陶艺吧";
+            cell.Introduce.text = @"说明文字说明文字说明文字说明文字说明文字说明文";
+            break;
+        case 6:
+            cell.NameTitle.text = @"电影工坊";
+            cell.Introduce.text = @"说明文字说明文字说明文字说明文字说明文字说明文字";
+            break;
+        case 7:
+            cell.NameTitle.text = @"火山餐厅";
+            cell.Introduce.text = @"说明文字说明文字说明文字说明文字说明文字";
+            break;
+    }
+    return cell;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section

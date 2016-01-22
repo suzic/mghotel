@@ -12,6 +12,8 @@
 
 @property (strong, nonatomic) IBOutlet UIScrollView *scrollBackground;
 @property (strong, nonatomic) IBOutlet UIView *bottomView;
+@property (strong, nonatomic) IBOutlet UIView *sideView;
+@property (strong, nonatomic) IBOutlet UIView *switchView;
 @property (strong, nonatomic) IBOutlet UIImageView *worldImage;
 @property (strong, nonatomic) IBOutlet UIView *worldLayer;
 @property (strong, nonatomic) IBOutlet NSLayoutConstraint *worldImageTop;
@@ -21,7 +23,6 @@
 @property (strong, nonatomic) IBOutlet NSLayoutConstraint *funcNavigationFront;
 @property (strong, nonatomic) IBOutlet NSLayoutConstraint *funcNavigationWidth;
 
-@property (strong, nonatomic) IBOutlet UISegmentedControl *functionMode;
 @property (strong, nonatomic) IBOutlet UIView *functionPanel;
 
 @property (strong, nonatomic) IBOutlet UIView *regionStart;
@@ -70,8 +71,15 @@
     self.regionConfirm.layer.borderColor = [UIColor lightGrayColor].CGColor;
     self.regionConfirm.layer.borderWidth = 0.5f;
     self.functionPanel.hidden = YES;
-    self.functionMode.hidden = YES;
     [self layoutFunctionPanelWithConfirmRow:NO];
+    
+    // 过滤器的设置
+    self.switchView.layer.cornerRadius = 4.0f;
+    self.switchView.layer.borderColor = [UIColor darkGrayColor].CGColor;
+    self.switchView.layer.borderWidth = 0.5f;
+    self.filterService.layer.cornerRadius = 4.0f;
+    self.filterShop.layer.cornerRadius = 4.0f;
+    self.filterFood.layer.cornerRadius = 4.0f;
     
     // 计算滚动视图
     [self resizeScrollView:CGSizeMake(kScreenWidth, kScreenHeight)];
@@ -101,6 +109,7 @@
 
     // 该层面上的消息接收
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(backToMain:) name:NotiBackToMain object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(showMap:) name:NotiShowMap object:nil];
 }
 
 // 内存警告检查
@@ -158,6 +167,11 @@
     self.inShowSettings = NO;
 }
 
+- (void)showMap:(NSNotification *)notification
+{
+    self.layerMode = NO;
+}
+
 #pragma mark - Fucntions
 
 - (void)setupWorldLayer
@@ -188,24 +202,24 @@
 
 - (void)layoutFunctionPanelWithConfirmRow:(BOOL)confirm
 {
-    if (self.functionMode.selectedSegmentIndex == 0)
-    {
+//    if (self.functionMode.selectedSegmentIndex == 0)
+//    {
         self.functionPanelHeight.constant = 45 * 2 - 2 + (confirm ? 88 : 0);
         self.regionEnd.hidden = NO;
         self.regionRequire.hidden = YES;
         self.regionRequireTop.constant = 45;
         self.regionConfirm.hidden = !confirm;
         [self.startText setTitle:@"(设置您的起点)" forState:UIControlStateNormal];
-    }
-    else
-    {
-        self.functionPanelHeight.constant = 45 * 2 - 2 + (confirm ? 88 : 0);
-        self.regionEnd.hidden = YES;
-        self.regionRequire.hidden = NO;
-        self.regionRequireTop.constant = 0;
-        self.regionConfirm.hidden = !confirm;
-        [self.startText setTitle:@"(设置您的位置)" forState:UIControlStateNormal];
-    }
+//    }
+//    else
+//    {
+//        self.functionPanelHeight.constant = 45 * 2 - 2 + (confirm ? 88 : 0);
+//        self.regionEnd.hidden = YES;
+//        self.regionRequire.hidden = NO;
+//        self.regionRequireTop.constant = 0;
+//        self.regionConfirm.hidden = !confirm;
+//        [self.startText setTitle:@"(设置您的位置)" forState:UIControlStateNormal];
+//    }
 }
 
 - (IBAction)startChanging:(id)sender
@@ -223,21 +237,6 @@
         case 2:
             [self.startText setTitle:@"面莊会" forState:UIControlStateNormal];
             break;
-    }
-}
-
-- (IBAction)selectMode:(id)sender
-{
-    self.layerMode = NO;
-    if (self.functionMode.selectedSegmentIndex == 0)
-    {
-        [self.worldImage setImage:[UIImage imageNamed:@"worldlayer"]];
-        self.worldImage.contentMode = UIViewContentModeScaleAspectFit;
-    }
-    else
-    {
-        [self.worldImage setImage:[UIImage imageNamed:@"MapDemo00"]];
-        self.worldImage.contentMode = UIViewContentModeCenter;
     }
 }
 
@@ -402,27 +401,24 @@
     if (_inPortraitMode == NO)
     {
         layerMode = NO;
-        self.functionMode.hidden = YES;
         self.functionPanel.hidden = YES;
-        self.bottomView.hidden = (self.functionMode.selectedSegmentIndex == 0);
     }
     else
     {
-        self.functionMode.hidden = layerMode;
         self.functionPanel.hidden = YES;
 
-        if (self.functionMode.selectedSegmentIndex == 1)
-        {
-            self.functionPanel.alpha = layerMode ? 1 : 0;
-            self.bottomView.alpha = layerMode ? 0 : 1;
-            [UIView animateWithDuration:0.5f animations:^{
-                self.functionPanel.alpha = layerMode ? 0 : 1;
-                self.bottomView.alpha = layerMode ? 1 : 0;
-            } completion:^(BOOL finished) {
-                self.functionPanel.hidden = layerMode;
-                self.bottomView.hidden = !layerMode;
-            }];
-        }
+//        if (self.functionMode.selectedSegmentIndex == 1)
+//        {
+//            self.functionPanel.alpha = layerMode ? 1 : 0;
+//            self.bottomView.alpha = layerMode ? 0 : 1;
+//            [UIView animateWithDuration:0.5f animations:^{
+//                self.functionPanel.alpha = layerMode ? 0 : 1;
+//                self.bottomView.alpha = layerMode ? 1 : 0;
+//            } completion:^(BOOL finished) {
+//                self.functionPanel.hidden = layerMode;
+//                self.bottomView.hidden = !layerMode;
+//            }];
+//        }
     }
     
     if (_layerMode == layerMode)
@@ -430,6 +426,8 @@
     
     _layerMode = layerMode;
     self.worldLayer.hidden = layerMode;
+    self.sideView.hidden = layerMode;
+    self.switchView.hidden = layerMode;
     self.scrollBackground.pagingEnabled = layerMode;
     
     [self.navigationController setNavigationBarHidden:!layerMode animated:YES];
@@ -512,9 +510,6 @@
         imageView.hidden = NO;
         if (![self point:pt insideImageView:imageView])
             imageView.hidden = YES;
-        else
-            // 注：这里中断会造成不取消之前的选定效果。用于制作demo截图故意设置。
-            break;
     }
 }
 

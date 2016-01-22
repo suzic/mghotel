@@ -11,5 +11,7 @@
 @interface POICell : UITableViewCell
 
 @property (strong, nonatomic) IBOutlet UIImageView *SnailImage;
+@property (strong, nonatomic) IBOutlet UILabel *NameTitle;
+@property (strong, nonatomic) IBOutlet UILabel *Introduce;
 
 @end

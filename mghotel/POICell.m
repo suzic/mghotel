@@ -37,4 +37,9 @@
     // Configure the view for the selected state
 }
 
+- (IBAction)findLocation:(id)sender
+{
+    [[NSNotificationCenter defaultCenter] postNotificationName:NotiShowMap object:sender];
+}
+
 @end
