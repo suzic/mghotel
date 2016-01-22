@@ -29,12 +29,6 @@
     [self.searchBar becomeFirstResponder];
 }
 
-// 不支持旋转屏，必须竖屏
-- (UIInterfaceOrientationMask)supportedInterfaceOrientations
-{
-    return UIInterfaceOrientationMaskPortrait;
-}
-
 - (NSMutableArray *)resultList
 {
     if (_resultList == nil)

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		D0095F701C52454D00AB82CB /* PresentRootController.m in Sources */ = {isa = PBXBuildFile; fileRef = D0095F6F1C52454D00AB82CB /* PresentRootController.m */; };
 		D04AA2D31C43895C0076F777 /* Libian.ttc in Resources */ = {isa = PBXBuildFile; fileRef = D04AA2D21C43895C0076F777 /* Libian.ttc */; };
 		D04AA2D61C4393E60076F777 /* LocationCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D04AA2D51C4393E60076F777 /* LocationCell.m */; };
 		D04AA2DB1C43A07B0076F777 /* SettingCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D04AA2DA1C43A07B0076F777 /* SettingCell.m */; };
@@ -48,6 +49,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		D0095F6E1C52454D00AB82CB /* PresentRootController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PresentRootController.h; sourceTree = "<group>"; };
+		D0095F6F1C52454D00AB82CB /* PresentRootController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PresentRootController.m; sourceTree = "<group>"; };
 		D04AA2D21C43895C0076F777 /* Libian.ttc */ = {isa = PBXFileReference; lastKnownFileType = file; path = Libian.ttc; sourceTree = "<group>"; };
 		D04AA2D41C4393E60076F777 /* LocationCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocationCell.h; sourceTree = "<group>"; };
 		D04AA2D51C4393E60076F777 /* LocationCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocationCell.m; sourceTree = "<group>"; };
@@ -172,6 +175,8 @@
 				D06705A31C3F90A90075CBE8 /* FrameController.m */,
 				D067059E1C3F87810075CBE8 /* MainController.h */,
 				D067059F1C3F87810075CBE8 /* MainController.m */,
+				D0095F6E1C52454D00AB82CB /* PresentRootController.h */,
+				D0095F6F1C52454D00AB82CB /* PresentRootController.m */,
 				D0D2F58B1C5210A6006CCF9D /* MapServiceController.h */,
 				D0D2F58C1C5210A6006CCF9D /* MapServiceController.m */,
 				D04AA2DF1C43C5520076F777 /* SearchPOIController.h */,
@@ -372,6 +377,7 @@
 				D04AA2DB1C43A07B0076F777 /* SettingCell.m in Sources */,
 				D0A4C6741C423F85000BD4B1 /* POIViewController.m in Sources */,
 				D057891F1C3CE16F0051E1A0 /* main.m in Sources */,
+				D0095F701C52454D00AB82CB /* PresentRootController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

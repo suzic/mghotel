@@ -64,12 +64,6 @@
     [self.mapView scrollRectToVisible:rect animated:NO];
 }
 
-// 不支持旋转屏，必须竖屏
-- (UIInterfaceOrientationMask)supportedInterfaceOrientations
-{
-    return UIInterfaceOrientationMaskPortrait;
-}
-
 - (void)layoutFunctionPanelWithConfirmRow:(BOOL)confirm
 {
     if (self.functionMode.selectedSegmentIndex == 0)
