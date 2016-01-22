@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		D0095F701C52454D00AB82CB /* PresentRootController.m in Sources */ = {isa = PBXBuildFile; fileRef = D0095F6F1C52454D00AB82CB /* PresentRootController.m */; };
+		D0095F741C52487F00AB82CB /* MainController+GuideMap.m in Sources */ = {isa = PBXBuildFile; fileRef = D0095F731C52487F00AB82CB /* MainController+GuideMap.m */; };
 		D04AA2D31C43895C0076F777 /* Libian.ttc in Resources */ = {isa = PBXBuildFile; fileRef = D04AA2D21C43895C0076F777 /* Libian.ttc */; };
 		D04AA2D61C4393E60076F777 /* LocationCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D04AA2D51C4393E60076F777 /* LocationCell.m */; };
 		D04AA2DB1C43A07B0076F777 /* SettingCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D04AA2DA1C43A07B0076F777 /* SettingCell.m */; };
@@ -51,6 +52,8 @@
 /* Begin PBXFileReference section */
 		D0095F6E1C52454D00AB82CB /* PresentRootController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PresentRootController.h; sourceTree = "<group>"; };
 		D0095F6F1C52454D00AB82CB /* PresentRootController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PresentRootController.m; sourceTree = "<group>"; };
+		D0095F721C52487F00AB82CB /* MainController+GuideMap.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MainController+GuideMap.h"; sourceTree = "<group>"; };
+		D0095F731C52487F00AB82CB /* MainController+GuideMap.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "MainController+GuideMap.m"; sourceTree = "<group>"; };
 		D04AA2D21C43895C0076F777 /* Libian.ttc */ = {isa = PBXFileReference; lastKnownFileType = file; path = Libian.ttc; sourceTree = "<group>"; };
 		D04AA2D41C4393E60076F777 /* LocationCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocationCell.h; sourceTree = "<group>"; };
 		D04AA2D51C4393E60076F777 /* LocationCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocationCell.m; sourceTree = "<group>"; };
@@ -118,6 +121,30 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		D0095F751C524BA100AB82CB /* MapFunction */ = {
+			isa = PBXGroup;
+			children = (
+				D0095F6E1C52454D00AB82CB /* PresentRootController.h */,
+				D0095F6F1C52454D00AB82CB /* PresentRootController.m */,
+				D0D2F58B1C5210A6006CCF9D /* MapServiceController.h */,
+				D0D2F58C1C5210A6006CCF9D /* MapServiceController.m */,
+				D04AA2DF1C43C5520076F777 /* SearchPOIController.h */,
+				D04AA2E01C43C5520076F777 /* SearchPOIController.m */,
+			);
+			name = MapFunction;
+			sourceTree = "<group>";
+		};
+		D0095F761C524BAF00AB82CB /* MainPage */ = {
+			isa = PBXGroup;
+			children = (
+				D067059E1C3F87810075CBE8 /* MainController.h */,
+				D067059F1C3F87810075CBE8 /* MainController.m */,
+				D0095F721C52487F00AB82CB /* MainController+GuideMap.h */,
+				D0095F731C52487F00AB82CB /* MainController+GuideMap.m */,
+			);
+			name = MainPage;
+			sourceTree = "<group>";
+		};
 		D04AA2D71C4393F20076F777 /* Settings */ = {
 			isa = PBXGroup;
 			children = (
@@ -173,14 +200,8 @@
 				D05789211C3CE16F0051E1A0 /* AppDelegate.m */,
 				D06705A21C3F90A90075CBE8 /* FrameController.h */,
 				D06705A31C3F90A90075CBE8 /* FrameController.m */,
-				D067059E1C3F87810075CBE8 /* MainController.h */,
-				D067059F1C3F87810075CBE8 /* MainController.m */,
-				D0095F6E1C52454D00AB82CB /* PresentRootController.h */,
-				D0095F6F1C52454D00AB82CB /* PresentRootController.m */,
-				D0D2F58B1C5210A6006CCF9D /* MapServiceController.h */,
-				D0D2F58C1C5210A6006CCF9D /* MapServiceController.m */,
-				D04AA2DF1C43C5520076F777 /* SearchPOIController.h */,
-				D04AA2E01C43C5520076F777 /* SearchPOIController.m */,
+				D0095F761C524BAF00AB82CB /* MainPage */,
+				D0095F751C524BA100AB82CB /* MapFunction */,
 				D057892C1C3CE16F0051E1A0 /* Assets.xcassets */,
 				D0A4C6751C428FC7000BD4B1 /* Resource.xcassets */,
 				D057891D1C3CE16F0051E1A0 /* Supporting Files */,
@@ -364,6 +385,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D0095F741C52487F00AB82CB /* MainController+GuideMap.m in Sources */,
 				D04AA2E11C43C5520076F777 /* SearchPOIController.m in Sources */,
 				D06705A01C3F87810075CBE8 /* MainController.m in Sources */,
 				D08934A01C42048A00BF5748 /* FuncReservationView.m in Sources */,

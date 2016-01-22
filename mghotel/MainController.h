@@ -24,4 +24,6 @@
 @property (retain, nonatomic) FuncReservationView *funcReservationView;
 @property (retain, nonatomic) FuncServiceView *funcServicenView;
 
+@property (strong, nonatomic) IBOutlet UIView *worldLayer;
+
 @end

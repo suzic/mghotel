@@ -7,6 +7,7 @@
 //
 
 #import "MainController.h"
+#import "MainController+GuideMap.h"
 
 @interface MainController () <UIScrollViewDelegate>
 
@@ -16,7 +17,6 @@
 @property (strong, nonatomic) IBOutlet UIView *sideView;
 @property (strong, nonatomic) IBOutlet UIView *switchView;
 @property (strong, nonatomic) IBOutlet UIImageView *worldImage;
-@property (strong, nonatomic) IBOutlet UIView *worldLayer;
 @property (strong, nonatomic) IBOutlet NSLayoutConstraint *worldImageTop;
 @property (strong, nonatomic) IBOutlet NSLayoutConstraint *worldImageHeight;
 @property (strong, nonatomic) IBOutlet NSLayoutConstraint *worldImageBottom;
@@ -132,43 +132,19 @@
     return self.disableRotate == YES ? UIInterfaceOrientationMaskPortrait : UIInterfaceOrientationMaskAll;
 }
 
+// 从显示设置状态回来
 - (void)backToMain:(NSNotification *)notification
 {
     self.disableRotate = NO;
 }
 
+// 切换到地图模式
 - (void)showMap:(NSNotification *)notification
 {
     self.layerMode = NO;
 }
 
 #pragma mark - Fucntions
-
-- (void)setupWorldLayer
-{
-    for (int index = 0; index < 13; index++)
-    {
-        CGRect focusFrame = CGRectMake(0, 0, self.worldLayer.frame.size.width, self.worldLayer.frame.size.height);
-        UIImageView *oneFocus = [[UIImageView alloc] initWithFrame:focusFrame];
-        NSString *imageName = [NSString stringWithFormat:@"wl_%d", index];
-        oneFocus.image = [UIImage imageNamed:imageName];
-        oneFocus.contentMode = UIViewContentModeScaleAspectFit;
-        [self.worldLayer addSubview:oneFocus];
-        oneFocus.hidden = YES;
-    }
-    
-    UITapGestureRecognizer *tapTarget = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(focusTarget:)];
-    [self.worldLayer addGestureRecognizer:tapTarget];
-}
-
-- (void)resizeWorldLayer
-{
-    for (UIImageView *imageView in self.worldLayer.subviews)
-    {
-        CGRect focusFrame = CGRectMake(0, 0, self.worldLayer.frame.size.width, self.worldLayer.frame.size.height);
-        [imageView setFrame:focusFrame];
-    }
-}
 
 // 视图尺寸变化后的重新布局
 - (void)resizeScrollView:(CGSize)size
@@ -219,9 +195,9 @@
     if (index == NSNotFound)
         return;
     
-    [self.funcReservation setTextColor:[UIColor darkGrayColor]];
-    [self.funcNavigation setTextColor:[UIColor darkGrayColor]];
-    [self.funcService setTextColor:[UIColor darkGrayColor]];
+    [self.funcReservation setTextColor:_layerMode ? [UIColor darkGrayColor] : [UIColor lightGrayColor]];
+    [self.funcNavigation setTextColor:_layerMode ? [UIColor darkGrayColor] : [UIColor lightGrayColor]];
+    [self.funcService setTextColor:_layerMode ? [UIColor darkGrayColor] : [UIColor lightGrayColor]];
     
     [self.funcReservation setFont:[UIFont systemFontOfSize:15.0f]];
     [self.funcNavigation setFont:[UIFont systemFontOfSize:15.0f]];
@@ -311,6 +287,7 @@
     self.sideView.hidden = layerMode;
     self.titleView.hidden = layerMode;
     self.scrollBackground.pagingEnabled = layerMode;
+    self.scrollBackground.backgroundColor = layerMode ? [UIColor whiteColor] : [UIColor darkGrayColor];
     
     [self.navigationController setNavigationBarHidden:!layerMode animated:YES];
     // 前景层模式切换时，showFunctionLayer动画跟随执行
@@ -383,35 +360,6 @@
 - (IBAction)switchBackground:(id)sender
 {
     self.layerMode = !self.layerMode;
-}
-
-// 屏幕单点
-- (void)focusTarget:(UIGestureRecognizer *)sender
-{
-    UITapGestureRecognizer *tap = (UITapGestureRecognizer *)sender;
-    CGPoint pt = [tap locationInView:self.worldLayer];
-    
-    for (UIImageView* imageView in self.worldLayer.subviews)
-    {
-        imageView.hidden = NO;
-        if (![self point:pt insideImageView:imageView])
-            imageView.hidden = YES;
-    }
-}
-
-- (BOOL)point:(CGPoint)point insideImageView:(UIImageView *)imageView
-{
-    unsigned char pixel[1] = {0};
-    CGContextRef context = CGBitmapContextCreate(pixel, 1, 1, 8, 1, NULL, kCGImageAlphaOnly);
-    UIGraphicsPushContext(context);
-    CGContextTranslateCTM(context, -point.x, -point.y);
-    [imageView.layer renderInContext:context];
-    UIGraphicsPopContext();
-    CGContextRelease(context);
-
-    CGFloat alpha = pixel[0] / 255.0f;
-    BOOL transparent = alpha < 0.1f;
-    return !transparent;
 }
 
 #pragma mark - Navigation
