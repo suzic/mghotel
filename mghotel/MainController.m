@@ -9,7 +9,7 @@
 #import "MainController.h"
 #import "MainController+GuideMap.h"
 
-@interface MainController () <UIScrollViewDelegate>
+@interface MainController () <UIScrollViewDelegate, UIGestureRecognizerDelegate>
 
 @property (strong, nonatomic) IBOutlet UIScrollView *scrollBackground;
 @property (strong, nonatomic) IBOutlet UIView *bottomView;
@@ -34,6 +34,10 @@
 @end
 
 @implementation MainController
+{
+    CGFloat currentScale;
+}
+
 
 // 初始化：设置默认页以及给Label加事件等等
 - (void)viewDidLoad
@@ -41,7 +45,8 @@
     [super viewDidLoad];
     
     self.disableRotate = NO;
-
+    currentScale = 1.0f;
+    
     // 附加UI的设置
     self.titleView.layer.cornerRadius = 4.0f;
     self.switchView.layer.cornerRadius = 4.0f;
@@ -61,6 +66,10 @@
     [self.funcNavigation addGestureRecognizer:tapNavigation];
     UITapGestureRecognizer *tapService = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(funcPressed:)];
     [self.funcService addGestureRecognizer:tapService];
+    
+    UIPinchGestureRecognizer *pinch = [[UIPinchGestureRecognizer alloc] initWithTarget:self action:@selector(scale:)];
+    pinch.delegate = self;
+    [self.scrollBackground addGestureRecognizer:pinch];
 
     // 添加滚动视图功能层
     self.funcReservationView = [FuncReservationView setupReservationView];
@@ -87,6 +96,7 @@
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+    NSLog(@"WOOOOOOOOOOOOOO");
 }
 
 // 尺寸变化（包括旋转屏幕在内）触发操作
@@ -306,7 +316,17 @@
     [self.navigationController setNavigationBarHidden:!_layerMode animated:YES];
 
     if (inPortraitMode == NO)
+    {
         self.layerMode = NO;
+        self.scrollBackground.scrollEnabled = NO;
+    }
+    else
+    {
+        currentScale = 1.0f;
+        self.scrollBackground.scrollEnabled = YES;
+        [self.scrollBackground setTransform:CGAffineTransformIdentity];
+        [self scrollToPage:1]; // 旋转后默认停到中间位置
+    }
 }
 
 #pragma mark - UIScrollView delegate
@@ -346,6 +366,33 @@
     {
         self.layerMode = YES;
         self.currentPage = sender.view.tag;
+    }
+}
+
+- (void)scale:(UIPinchGestureRecognizer*)sender
+{
+    if (_inPortraitMode)
+        return;
+    
+    //当手指离开屏幕时,将lastscale设置为1.0
+    switch (sender.state)
+    {
+        case UIGestureRecognizerStateBegan:
+            break;
+
+        case UIGestureRecognizerStateEnded:
+            currentScale = [sender scale] * currentScale;
+            if (currentScale < 1.0) currentScale = 1.0f;
+            break;
+
+        default:
+        {
+            CGFloat scale = [sender scale] * currentScale;
+            if (scale < 1.0) scale = 1.0f;
+            CGAffineTransform newTransform = CGAffineTransformScale(CGAffineTransformIdentity, scale, scale);
+            [self.scrollBackground setTransform:newTransform];
+        }
+            break;
     }
 }
 

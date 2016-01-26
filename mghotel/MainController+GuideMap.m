@@ -7,8 +7,10 @@
 //
 
 #import "MainController+GuideMap.h"
+#import "UISuzicImageView.h"
+#import "OBShapedButton.h"
 
-@implementation MainController(GuideMap)
+@implementation MainController (GuideMap)
 
 - (void)setupWorldLayer
 {
@@ -17,10 +19,11 @@
         CGRect focusFrame = CGRectMake(0, 0, self.worldLayer.frame.size.width, self.worldLayer.frame.size.height);
         UIImageView *oneFocus = [[UIImageView alloc] initWithFrame:focusFrame];
         NSString *imageName = [NSString stringWithFormat:@"wl_%d", index];
-        oneFocus.image = [UIImage imageNamed:imageName];
+        [oneFocus setImage:[UIImage imageNamed:imageName]];
+        oneFocus.clearsContextBeforeDrawing = YES;
         oneFocus.contentMode = UIViewContentModeScaleAspectFit;
         [self.worldLayer addSubview:oneFocus];
-        oneFocus.hidden = YES;
+        //oneFocus.hidden = YES;
     }
     
     UITapGestureRecognizer *tapTarget = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(focusTarget:)];
@@ -40,12 +43,13 @@
 - (void)focusTarget:(UIGestureRecognizer *)sender
 {
     UITapGestureRecognizer *tap = (UITapGestureRecognizer *)sender;
+//    tap.view.hidden = YES;
+//    return;
     CGPoint pt = [tap locationInView:self.worldLayer];
     
     for (UIImageView* imageView in self.worldLayer.subviews)
     {
-        imageView.hidden = NO;
-        if (![self point:pt insideImageView:imageView])
+        if ([self point:pt insideImageView:imageView])
             imageView.hidden = YES;
     }
 }
@@ -55,13 +59,13 @@
 {
     unsigned char pixel[1] = {0};
     CGContextRef context = CGBitmapContextCreate(pixel, 1, 1, 8, 1, NULL, kCGImageAlphaOnly);
-    UIGraphicsPushContext(context);
+    //UIGraphicsPushContext(context);
     CGContextTranslateCTM(context, -point.x, -point.y);
     [imageView.layer renderInContext:context];
-    UIGraphicsPopContext();
+    //UIGraphicsPopContext();
+    CGFloat alpha = pixel[0] / 255.0f;
     CGContextRelease(context);
     
-    CGFloat alpha = pixel[0] / 255.0f;
     BOOL transparent = alpha < 0.1f;
     return !transparent;
 }

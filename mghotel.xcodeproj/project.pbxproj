@@ -29,6 +29,9 @@
 		D0A4C6761C428FC7000BD4B1 /* Resource.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D0A4C6751C428FC7000BD4B1 /* Resource.xcassets */; };
 		D0A4C6791C42916C000BD4B1 /* POICell.m in Sources */ = {isa = PBXBuildFile; fileRef = D0A4C6781C42916C000BD4B1 /* POICell.m */; };
 		D0A4C67C1C42AC56000BD4B1 /* FuncServiceView.m in Sources */ = {isa = PBXBuildFile; fileRef = D0A4C67B1C42AC56000BD4B1 /* FuncServiceView.m */; };
+		D0ADD6871C57741B0080D73C /* OBShapedButton.m in Sources */ = {isa = PBXBuildFile; fileRef = D0ADD6861C57741B0080D73C /* OBShapedButton.m */; };
+		D0ADD68A1C5774A00080D73C /* UIImage+ColorAtPixel.m in Sources */ = {isa = PBXBuildFile; fileRef = D0ADD6891C5774A00080D73C /* UIImage+ColorAtPixel.m */; };
+		D0ADD68D1C57780A0080D73C /* UISuzicImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = D0ADD68C1C57780A0080D73C /* UISuzicImageView.m */; };
 		D0D2F58D1C5210A6006CCF9D /* MapServiceController.m in Sources */ = {isa = PBXBuildFile; fileRef = D0D2F58C1C5210A6006CCF9D /* MapServiceController.m */; };
 /* End PBXBuildFile section */
 
@@ -92,6 +95,12 @@
 		D0A4C6781C42916C000BD4B1 /* POICell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = POICell.m; sourceTree = "<group>"; };
 		D0A4C67A1C42AC56000BD4B1 /* FuncServiceView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FuncServiceView.h; sourceTree = "<group>"; };
 		D0A4C67B1C42AC56000BD4B1 /* FuncServiceView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FuncServiceView.m; sourceTree = "<group>"; };
+		D0ADD6851C57741B0080D73C /* OBShapedButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OBShapedButton.h; sourceTree = "<group>"; };
+		D0ADD6861C57741B0080D73C /* OBShapedButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OBShapedButton.m; sourceTree = "<group>"; };
+		D0ADD6881C5774A00080D73C /* UIImage+ColorAtPixel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+ColorAtPixel.h"; sourceTree = "<group>"; };
+		D0ADD6891C5774A00080D73C /* UIImage+ColorAtPixel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+ColorAtPixel.m"; sourceTree = "<group>"; };
+		D0ADD68B1C57780A0080D73C /* UISuzicImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UISuzicImageView.h; sourceTree = "<group>"; };
+		D0ADD68C1C57780A0080D73C /* UISuzicImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UISuzicImageView.m; sourceTree = "<group>"; };
 		D0D2F58B1C5210A6006CCF9D /* MapServiceController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapServiceController.h; sourceTree = "<group>"; };
 		D0D2F58C1C5210A6006CCF9D /* MapServiceController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapServiceController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -137,6 +146,12 @@
 		D0095F761C524BAF00AB82CB /* MainPage */ = {
 			isa = PBXGroup;
 			children = (
+				D0ADD68B1C57780A0080D73C /* UISuzicImageView.h */,
+				D0ADD68C1C57780A0080D73C /* UISuzicImageView.m */,
+				D0ADD6881C5774A00080D73C /* UIImage+ColorAtPixel.h */,
+				D0ADD6891C5774A00080D73C /* UIImage+ColorAtPixel.m */,
+				D0ADD6851C57741B0080D73C /* OBShapedButton.h */,
+				D0ADD6861C57741B0080D73C /* OBShapedButton.m */,
 				D067059E1C3F87810075CBE8 /* MainController.h */,
 				D067059F1C3F87810075CBE8 /* MainController.m */,
 				D0095F721C52487F00AB82CB /* MainController+GuideMap.h */,
@@ -394,12 +409,15 @@
 				D06705A41C3F90A90075CBE8 /* FrameController.m in Sources */,
 				D0A4C6791C42916C000BD4B1 /* POICell.m in Sources */,
 				D0A4C67C1C42AC56000BD4B1 /* FuncServiceView.m in Sources */,
+				D0ADD68D1C57780A0080D73C /* UISuzicImageView.m in Sources */,
 				D0D2F58D1C5210A6006CCF9D /* MapServiceController.m in Sources */,
 				D05789221C3CE16F0051E1A0 /* AppDelegate.m in Sources */,
 				D04AA2DB1C43A07B0076F777 /* SettingCell.m in Sources */,
 				D0A4C6741C423F85000BD4B1 /* POIViewController.m in Sources */,
+				D0ADD6871C57741B0080D73C /* OBShapedButton.m in Sources */,
 				D057891F1C3CE16F0051E1A0 /* main.m in Sources */,
 				D0095F701C52454D00AB82CB /* PresentRootController.m in Sources */,
+				D0ADD68A1C5774A00080D73C /* UIImage+ColorAtPixel.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
