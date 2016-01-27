@@ -31,13 +31,15 @@
 
 @property (assign, nonatomic) BOOL disableRotate;
 
+@property (retain, nonatomic) UIPinchGestureRecognizer *pinchWorld;
+@property (retain, nonatomic) UIPanGestureRecognizer *panWorld;
+
 @end
 
 @implementation MainController
 {
-    CGFloat currentScale;
+    CGAffineTransform lastTransform;
 }
-
 
 // 初始化：设置默认页以及给Label加事件等等
 - (void)viewDidLoad
@@ -45,7 +47,7 @@
     [super viewDidLoad];
     
     self.disableRotate = NO;
-    currentScale = 1.0f;
+    lastTransform = CGAffineTransformIdentity;
     
     // 附加UI的设置
     self.titleView.layer.cornerRadius = 4.0f;
@@ -67,9 +69,13 @@
     UITapGestureRecognizer *tapService = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(funcPressed:)];
     [self.funcService addGestureRecognizer:tapService];
     
-    UIPinchGestureRecognizer *pinch = [[UIPinchGestureRecognizer alloc] initWithTarget:self action:@selector(scale:)];
-    pinch.delegate = self;
-    [self.scrollBackground addGestureRecognizer:pinch];
+    self.pinchWorld = [[UIPinchGestureRecognizer alloc] initWithTarget:self action:@selector(scaleWorldView:)];
+    self.pinchWorld.delegate = self;
+    [self.scrollBackground addGestureRecognizer:self.pinchWorld];
+    self.panWorld = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(panWorldView:)];
+    self.panWorld.delegate = self;
+    [self.panWorld setMaximumNumberOfTouches:1];
+    [self.scrollBackground addGestureRecognizer:self.panWorld];
 
     // 添加滚动视图功能层
     self.funcReservationView = [FuncReservationView setupReservationView];
@@ -195,7 +201,7 @@
 // 切换滚动到视图的位置
 - (void)scrollToPage:(NSInteger)index
 {
-    CGRect rect = CGRectMake(kScreenWidth * index, 0, kScreenWidth, self.scrollBackground.frame.size.height);
+    CGRect rect = CGRectMake(kScreenWidth * index, 0,  kScreenWidth, self.scrollBackground.frame.size.height);
     [self.scrollBackground scrollRectToVisible:rect animated:YES];
 }
 
@@ -322,9 +328,9 @@
     }
     else
     {
-        currentScale = 1.0f;
         self.scrollBackground.scrollEnabled = YES;
-        [self.scrollBackground setTransform:CGAffineTransformIdentity];
+        lastTransform = CGAffineTransformIdentity;
+        [self.scrollBackground setTransform:lastTransform];
         [self scrollToPage:1]; // 旋转后默认停到中间位置
     }
 }
@@ -369,31 +375,75 @@
     }
 }
 
-- (void)scale:(UIPinchGestureRecognizer*)sender
+- (void)scaleWorldView:(UIPinchGestureRecognizer *)sender
 {
-    if (_inPortraitMode)
-        return;
-    
-    //当手指离开屏幕时,将lastscale设置为1.0
     switch (sender.state)
     {
         case UIGestureRecognizerStateBegan:
             break;
 
         case UIGestureRecognizerStateEnded:
-            currentScale = [sender scale] * currentScale;
-            if (currentScale < 1.0) currentScale = 1.0f;
+            lastTransform = self.scrollBackground.transform;
             break;
 
         default:
         {
-            CGFloat scale = [sender scale] * currentScale;
-            if (scale < 1.0) scale = 1.0f;
-            CGAffineTransform newTransform = CGAffineTransformScale(CGAffineTransformIdentity, scale, scale);
+            CGAffineTransform newTransform = CGAffineTransformScale(lastTransform, sender.scale, sender.scale);
+            // 限制缩放在1.0～3.0之间
+            if (newTransform.a < 1.0f) newTransform.a = 1.0f;
+            if (newTransform.d < 1.0f) newTransform.d = 1.0f;
+            if (newTransform.a > 3.0f) newTransform.a = 3.0f;
+            if (newTransform.d > 3.0f) newTransform.d = 3.0f;
+            // 缩放也会引起边界变化，控制边界
+            if (newTransform.tx < -(self.scrollBackground.frame.size.width - kScreenWidth) / 2)
+                newTransform.tx = -(self.scrollBackground.frame.size.width - kScreenWidth) / 2;
+            if (newTransform.tx > (self.scrollBackground.frame.size.width - kScreenWidth) / 2)
+                newTransform.tx = (self.scrollBackground.frame.size.width - kScreenWidth) / 2;
+            if (newTransform.ty < -(self.scrollBackground.frame.size.height- kScreenHeight) / 2)
+                newTransform.ty = -(self.scrollBackground.frame.size.height - kScreenHeight) / 2;
+            if (newTransform.ty > (self.scrollBackground.frame.size.height - kScreenHeight) / 2)
+                newTransform.ty = (self.scrollBackground.frame.size.height - kScreenHeight) / 2;
             [self.scrollBackground setTransform:newTransform];
         }
             break;
     }
+}
+
+- (void)panWorldView:(UIPanGestureRecognizer *)sender
+{
+    switch (sender.state)
+    {
+        case UIGestureRecognizerStateBegan:
+            break;
+            
+        case UIGestureRecognizerStateEnded:
+            lastTransform = self.scrollBackground.transform;
+            break;
+            
+        default:
+        {
+            CGPoint translation = [sender translationInView:self.scrollBackground];
+            CGAffineTransform newTransform = CGAffineTransformTranslate(lastTransform, translation.x, translation.y);
+            // 平移的边界变化控制
+            if (newTransform.tx < -(self.scrollBackground.frame.size.width - kScreenWidth) / 2)
+                newTransform.tx = -(self.scrollBackground.frame.size.width - kScreenWidth) / 2;
+            if (newTransform.tx > (self.scrollBackground.frame.size.width - kScreenWidth) / 2)
+                newTransform.tx = (self.scrollBackground.frame.size.width - kScreenWidth) / 2;
+            if (newTransform.ty < -(self.scrollBackground.frame.size.height- kScreenHeight) / 2)
+                newTransform.ty = -(self.scrollBackground.frame.size.height - kScreenHeight) / 2;
+            if (newTransform.ty > (self.scrollBackground.frame.size.height - kScreenHeight) / 2)
+                newTransform.ty = (self.scrollBackground.frame.size.height - kScreenHeight) / 2;
+            [self.scrollBackground setTransform:newTransform];
+        }
+            break;
+    }
+}
+
+- (BOOL)gestureRecognizerShouldBegin:(UIGestureRecognizer *)gestureRecognizer
+{
+    if (_inPortraitMode && (gestureRecognizer == self.pinchWorld || gestureRecognizer == self.panWorld))
+        return NO;
+    return YES;
 }
 
 // 进入用户中心设置

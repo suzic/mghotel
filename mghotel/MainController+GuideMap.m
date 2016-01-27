@@ -26,8 +26,8 @@
         //oneFocus.hidden = YES;
     }
     
-    UITapGestureRecognizer *tapTarget = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(focusTarget:)];
-    [self.worldLayer addGestureRecognizer:tapTarget];
+//    UITapGestureRecognizer *tapTarget = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(focusTarget:)];
+//    [self.worldLayer addGestureRecognizer:tapTarget];
 }
 
 - (void)resizeWorldLayer

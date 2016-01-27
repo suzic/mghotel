@@ -146,12 +146,7 @@
 		D0095F761C524BAF00AB82CB /* MainPage */ = {
 			isa = PBXGroup;
 			children = (
-				D0ADD68B1C57780A0080D73C /* UISuzicImageView.h */,
-				D0ADD68C1C57780A0080D73C /* UISuzicImageView.m */,
-				D0ADD6881C5774A00080D73C /* UIImage+ColorAtPixel.h */,
-				D0ADD6891C5774A00080D73C /* UIImage+ColorAtPixel.m */,
-				D0ADD6851C57741B0080D73C /* OBShapedButton.h */,
-				D0ADD6861C57741B0080D73C /* OBShapedButton.m */,
+				D05FADF21C58C8650013A33E /* temp */,
 				D067059E1C3F87810075CBE8 /* MainController.h */,
 				D067059F1C3F87810075CBE8 /* MainController.m */,
 				D0095F721C52487F00AB82CB /* MainController+GuideMap.h */,
@@ -252,6 +247,19 @@
 				D05789471C3CE16F0051E1A0 /* Info.plist */,
 			);
 			path = mghotelUITests;
+			sourceTree = "<group>";
+		};
+		D05FADF21C58C8650013A33E /* temp */ = {
+			isa = PBXGroup;
+			children = (
+				D0ADD68B1C57780A0080D73C /* UISuzicImageView.h */,
+				D0ADD68C1C57780A0080D73C /* UISuzicImageView.m */,
+				D0ADD6881C5774A00080D73C /* UIImage+ColorAtPixel.h */,
+				D0ADD6891C5774A00080D73C /* UIImage+ColorAtPixel.m */,
+				D0ADD6851C57741B0080D73C /* OBShapedButton.h */,
+				D0ADD6861C57741B0080D73C /* OBShapedButton.m */,
+			);
+			name = temp;
 			sourceTree = "<group>";
 		};
 		D08934A11C4228B800BF5748 /* FrontLayer */ = {
