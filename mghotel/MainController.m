@@ -389,11 +389,11 @@
         default:
         {
             CGAffineTransform newTransform = CGAffineTransformScale(lastTransform, sender.scale, sender.scale);
-            // 限制缩放在1.0～3.0之间
+            // 限制缩放在1.0～2.0之间
             if (newTransform.a < 1.0f) newTransform.a = 1.0f;
             if (newTransform.d < 1.0f) newTransform.d = 1.0f;
-            if (newTransform.a > 3.0f) newTransform.a = 3.0f;
-            if (newTransform.d > 3.0f) newTransform.d = 3.0f;
+            if (newTransform.a > 2.0f) newTransform.a = 2.0f;
+            if (newTransform.d > 2.0f) newTransform.d = 2.0f;
             // 缩放也会引起边界变化，控制边界
             if (newTransform.tx < -(self.scrollBackground.frame.size.width - kScreenWidth) / 2)
                 newTransform.tx = -(self.scrollBackground.frame.size.width - kScreenWidth) / 2;
